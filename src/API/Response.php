@@ -3,12 +3,12 @@ namespace mikemix\Wiziq\API;
 
 class Response
 {
-    /** @var array */
-    protected $response;
+    /** @var \SimpleXMLElement */
+    protected $xml;
 
     public function __construct(\SimpleXMLElement $xml)
     {
-        $this->response = json_decode(json_encode($xml), true);
+        $this->xml = $xml;
     }
 
     /**
@@ -18,7 +18,7 @@ class Response
      */
     public function isSuccess()
     {
-        return $this->response['@attributes']['status'] !== 'fail';
+        return (string)$this->xml['status'] !== 'fail';
     }
 
     /**
@@ -27,10 +27,10 @@ class Response
     public function getErrorCode()
     {
         if ($this->isSuccess()) {
-            throw new \BadMethodCallException('Ten response jest prawidlowy i nie posiada numeru bledu');
+            throw new \BadMethodCallException('Response is correct, no error code available');
         }
 
-        return (int)$this->response['error']['@attributes']['code'];
+        return (int)$this->xml->error[0]['code'];
     }
 
     /**
@@ -39,9 +39,9 @@ class Response
     public function getErrorMessage()
     {
         if ($this->isSuccess()) {
-            throw new \BadMethodCallException('Ten response jest prawidlowy i nie posiada numeru bledu');
+            throw new \BadMethodCallException('Response is correct, no error message available');
         }
 
-        return (string)$this->response['error']['@attributes']['msg'];
+        return (string)$this->xml->error[0]['msg'];
     }
 }
