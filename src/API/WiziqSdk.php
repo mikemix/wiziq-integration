@@ -19,6 +19,9 @@ class WiziqSdk implements WiziqSdkInterface
      */
     public function addTeacher(Teacher $teacher)
     {
-        return $this->requester->sendRequest(new Request\AddTeacher($teacher));
+        $response = $this->requester->sendRequest(new Request\AddTeacher($teacher));
+        if (!$response->isSuccess()) {
+            throw Exception\TeacherNotAddedException::with($response);
+        }
     }
 }

@@ -1,7 +1,7 @@
 <?php
 namespace mikemix\Wiziq\Common\Api;
 
-use mikemix\Wiziq\API\Response;
+use mikemix\Wiziq\API\Exception;
 use mikemix\Wiziq\Entity\Teacher;
 
 interface WiziqSdkInterface
@@ -10,7 +10,7 @@ interface WiziqSdkInterface
      * Add the teacher.
      *
      * @param Teacher $teacher
-     * @return Response
+     * @throws Exception\TeacherNotAddedException
      */
     public function addTeacher(Teacher $teacher);
 }
