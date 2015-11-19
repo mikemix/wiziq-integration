@@ -1,4 +1,7 @@
 # wiziq-integration
+
+[![Build Status](https://travis-ci.org/mikemix/wiziq-integration.svg?branch=master)](https://travis-ci.org/mikemix/wiziq-integration) [![Build Status](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/badges/build.png?b=master)](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/?branch=master)
+
 Integration library with Wiziq's Virtual Classroom API
 
 ### Installation
