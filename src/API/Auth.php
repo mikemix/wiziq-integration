@@ -1,9 +1,7 @@
 <?php
 namespace mikemix\Wiziq\API;
 
-use mikemix\Wiziq\Common\Api\AuthInterface;
-
-final class Auth implements AuthInterface
+final class Auth
 {
     /** @var string */
     private $secretAcessKey;
@@ -22,9 +20,11 @@ final class Auth implements AuthInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param string $methodName Method name
+     * @param array $data        Method payload
+     * @return array             Send ready request payload
      */
-    public function prepareRequest($methodName, array $data)
+    public function preparePayload($methodName, array $data)
     {
         $requestParameters = [];
         $requestParameters['access_key'] = $this->accessKey;
