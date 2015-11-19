@@ -1,16 +1,16 @@
 <?php
 namespace mikemix\Wiziq\API;
 
-final class Auth
+class Auth
 {
     /** @var string */
-    private $secretAcessKey;
+    protected $secretAcessKey;
 
     /** @var string */
-    private $accessKey;
+    protected $accessKey;
 
     /** @var int */
-    private $currentTime;
+    protected $currentTime;
 
     public function __construct($secretAcessKey, $accessKey, $currentTime = null)
     {
@@ -53,7 +53,7 @@ final class Auth
      * @param string $data
      * @return string
      */
-    private function hmacsha1($data)
+    protected function hmacsha1($data)
     {
         $key       = urlencode($this->secretAcessKey);
         $blocksize = 64;
