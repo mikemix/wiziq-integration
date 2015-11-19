@@ -1,0 +1,18 @@
+{
+    "name": "mikemix/wiziq-integration",
+    "description": "Integration library with Wiziq's Virtual Classroom API",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michal Zukowski",
+            "email": "support@phpcontext.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "mikemix\\Wiziq\\": "src"
+        }
+    }
+}
