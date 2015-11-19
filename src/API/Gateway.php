@@ -30,7 +30,7 @@ final class Gateway
 
     /**
      * @param RequestInterface $wiziqRequest
-     * @return Response
+     * @return Response|object
      */
     public function sendRequest(RequestInterface $wiziqRequest)
     {
