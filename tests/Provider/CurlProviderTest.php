@@ -16,7 +16,7 @@ class CurlProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testValidResponseReturnsResponse()
     {
-        $testFile = __DIR__ . '/../resources/curlfile.txt';
+        $testFile = __DIR__ . '/../.resources/curlfile.txt';
 
         $this->assertEquals(
             file_get_contents($testFile),
