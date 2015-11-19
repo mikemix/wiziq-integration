@@ -4,7 +4,7 @@ namespace mikemix\Wiziq\API\Request;
 use mikemix\Wiziq\Common\Api\RequestInterface;
 use mikemix\Wiziq\Entity\Teacher;
 
-final class AddTeacher implements RequestInterface
+class AddTeacher implements RequestInterface
 {
     /** @var Teacher */
     private $teacher;
