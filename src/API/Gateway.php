@@ -8,7 +8,7 @@ use mikemix\Wiziq\Http\CurlClient;
 /**
  * Wiziq's API gateway
  */
-final class Gateway
+class Gateway
 {
     const URL = 'http://class.api.wiziq.com';
 

@@ -35,7 +35,7 @@ class WiziqSdk implements WiziqSdkInterface
 
     /**
      * @param RequestInterface $request
-     * @return Response|object
+     * @return \SimpleXMLElement|object
      */
     private function makeCall(RequestInterface $request)
     {
@@ -44,6 +44,6 @@ class WiziqSdk implements WiziqSdkInterface
             throw Exception\CallException::from($response);
         }
 
-        return $response;
+        return $response->getResponse();
     }
 }
