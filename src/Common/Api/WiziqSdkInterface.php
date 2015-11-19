@@ -10,6 +10,8 @@ interface WiziqSdkInterface
      * Add the teacher.
      *
      * @param Teacher $teacher
+     * @return int Teacher's internal wiziq ID
+     *
      * @throws Exception\TeacherNotAddedException
      */
     public function addTeacher(Teacher $teacher);

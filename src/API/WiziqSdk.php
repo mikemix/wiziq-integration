@@ -23,5 +23,7 @@ class WiziqSdk implements WiziqSdkInterface
         if (!$response->isSuccess()) {
             throw Exception\TeacherNotAddedException::with($response);
         }
+
+        return (int)$response->add_teacher[0]->teacher_id;
     }
 }
