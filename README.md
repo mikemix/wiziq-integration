@@ -22,21 +22,18 @@ require 'vendor/autoload.php';
 
 use mikemix\Wiziq;
 
-$auth    = new Wiziq\API\Auth('your-secret-key', 'your-access-key');
-$request = new Wiziq\API\Request($auth);
-$service = new Wiziq\Service\AddTeacher($request);
+$auth    = new Wiziq\API\Auth('your-secret-access-key', 'public-access-key');
+$gateway = new Wiziq\API\Gateway($auth);
+$sdk     = new Wiziq\API\WiziqSdk($gateway);
 
-$teacher = new Wiziq\ValueObject\Teacher(
-    'Name Surname',
-    'his@email.com',
-    'his_password'
-);
+try {
+    $teacher = new Wiziq\Entity\Teacher('Mike Test', 'mike@test.com', 'his_password');
+    $sdk->addTeacher($teacher);
 
-$response = $service->addTeacher($teacher);
-
-if ($response->isValid()) {
-    printf('Teacher %s added!', $teacher);
-} else {
-    printf('Something went wrong. %d: %s', $response->getErrorCode(), $response->getErrorMessage());
+    sprintf('Teacher %s added!', $teacher);
+} catch (Wiziq\API\Exception\TeacherNotAddedException $e) {
+    die($e->getMessage());
+} catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
+    die($e->getMessage());
 }
 ```
