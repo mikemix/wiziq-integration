@@ -14,4 +14,15 @@ interface WiziqSdkInterface
      * @throws Exception\CallException
      */
     public function addTeacher(Teacher $teacher);
+
+    /**
+     * Edit teacher $teacherId
+     *
+     * @param int $teacherId   Wiziq's teacher ID
+     * @param Teacher $teacher New teacher's data
+     * @return void
+     *
+     * @throws Exception\CallException
+     */
+    public function editTeacher($teacherId, Teacher $teacher);
 }
