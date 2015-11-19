@@ -5,8 +5,10 @@ Integration library with Wiziq's Virtual Classroom API
 
 Best install with Composer
 
-1. You don't have Composer? Download it `php -r "readfile('https://getcomposer.org/installer');" | php`
-2. Download the library `composer require mikemix/wiziq-integration:~1.0` (rules of [semantic versioning](http://semver.org) apply).
+1. You don't have Composer?
+   Download it `php -r "readfile('https://getcomposer.org/installer');" | php`
+2. Download the library `composer require mikemix/wiziq-integration:~1.0`
+   Rules of [semantic versioning](http://semver.org) apply.
 
 ### Example usage, adding a teacher:
 
