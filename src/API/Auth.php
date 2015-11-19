@@ -26,6 +26,7 @@ final class Auth implements AuthInterface
      */
     public function prepareRequest($methodName, array $data)
     {
+        $requestParameters = [];
         $requestParameters['access_key'] = $this->accessKey;
         $requestParameters['timestamp']  = $this->currentTime;
         $requestParameters['method']     = $methodName;

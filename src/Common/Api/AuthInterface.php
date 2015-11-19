@@ -10,7 +10,7 @@ interface AuthInterface
      *
      * @param string $methodName
      * @param array  $data
-     * @return string
+     * @return array
      */
     public function prepareRequest($methodName, array $data);
 }
