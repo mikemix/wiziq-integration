@@ -1,7 +1,6 @@
 <?php
 namespace mikemix\Wiziq\Http;
 
-use mikemix\Wiziq\API\Response;
 use mikemix\Wiziq\Common\Http\ClientInterface;
 use mikemix\Wiziq\Common\Http\Exception;
 
@@ -24,6 +23,6 @@ class CurlClient implements ClientInterface
             throw Exception\InvalidResponseException::with($url, $error);
         }
 
-        return new Response(simplexml_load_string($response));
+        return $response;
     }
 }

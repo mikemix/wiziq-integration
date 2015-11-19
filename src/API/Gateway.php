@@ -37,6 +37,10 @@ final class Gateway
         $url = sprintf('%s?method=%s', $this->endpointUrl, $wiziqRequest->getMethod());
         $params = $this->auth->preparePayload($wiziqRequest->getMethod(), $wiziqRequest->getParams());
 
-        return $this->client->getResponse($url, $params);
+        $rawResponse = $this->client->getResponse($url, $params);
+        $xmlObject   = simplexml_load_string($rawResponse);
+        $response    = new Response($xmlObject);
+
+        return $response;
     }
 }

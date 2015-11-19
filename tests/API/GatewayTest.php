@@ -3,6 +3,7 @@ namespace mikemix\Wiziq\Tests\API;
 
 use mikemix\Wiziq\API\Auth;
 use mikemix\Wiziq\API\Gateway;
+use mikemix\Wiziq\API\Response;
 use mikemix\Wiziq\Common\Api\RequestInterface;
 use mikemix\Wiziq\Common\Http\ClientInterface;
 
@@ -50,16 +51,12 @@ class GatewayTest extends \PHPUnit_Framework_TestCase
 
         $this->client->expects($this->atLeastOnce())
             ->method('getResponse')
-            ->with($this->equalTo('http://api.wiziq.com?method=add_teacher'), $this->equalTo($data));
+            ->with($this->equalTo('http://api.wiziq.com?method=add_teacher'), $this->equalTo($data))
+            ->will($this->returnValue('<rsp></rsp>'));
 
-        $this->request->expects($this->atLeastOnce())
-            ->method('getMethod')
-            ->will($this->returnValue($method));
+        $this->request->expects($this->atLeastOnce())->method('getMethod')->will($this->returnValue($method));
+        $this->request->expects($this->atLeastOnce())->method('getParams')->will($this->returnValue($data));
 
-        $this->request->expects($this->atLeastOnce())
-            ->method('getParams')
-            ->will($this->returnValue($data));
-
-        $this->gateway->sendRequest($this->request);
+        $this->assertInstanceOf(Response::class, $this->gateway->sendRequest($this->request));
     }
 }

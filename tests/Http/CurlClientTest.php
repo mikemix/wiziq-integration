@@ -1,7 +1,6 @@
 <?php
 namespace mikemix\Wiziq\Tests\Http;
 
-use mikemix\Wiziq\API\Response;
 use mikemix\Wiziq\Common\Http\Exception\InvalidResponseException;
 use mikemix\Wiziq\Http\CurlClient;
 
@@ -19,7 +18,10 @@ class CurlClientTest extends \PHPUnit_Framework_TestCase
     {
         $testFile = __DIR__ . '/../.resources/curlfile.txt';
 
-        $this->assertInstanceOf(Response::class, $this->client->getResponse($this->convertPathToUri($testFile), []));
+        $this->assertEquals(
+            file_get_contents($testFile),
+            $this->client->getResponse($this->convertPathToUri($testFile), [])
+        );
     }
 
     public function testInvalidResponseThrowsException()
