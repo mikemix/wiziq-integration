@@ -1,10 +1,11 @@
 <?php
-namespace mikemix\Wiziq\Provider;
+namespace mikemix\Wiziq\Http;
 
-use mikemix\Wiziq\Common\Provider\Exception\InvalidResponseException;
-use mikemix\Wiziq\Common\Provider\ProviderInterface;
+use mikemix\Wiziq\API\Response;
+use mikemix\Wiziq\Common\Http\ClientInterface;
+use mikemix\Wiziq\Common\Http\Exception;
 
-class CurlProvider implements ProviderInterface
+class CurlClient implements ClientInterface
 {
     /**
      * {@inheritdoc}
@@ -20,9 +21,9 @@ class CurlProvider implements ProviderInterface
         curl_close($ch);
 
         if (!$response) {
-            throw InvalidResponseException::with($url, $error);
+            throw Exception\InvalidResponseException::with($url, $error);
         }
 
-        return $response;
+        return new Response(simplexml_load_string($response));
     }
 }
