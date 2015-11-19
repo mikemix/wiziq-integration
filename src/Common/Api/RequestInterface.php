@@ -4,11 +4,16 @@ namespace mikemix\Wiziq\Common\Api;
 interface RequestInterface
 {
     /**
-     * Send request to Wiziq API.
+     * Calling method name.
      *
-     * @param string $method Which method to call?
-     * @param array  $data   Payload to send
-     * @return ResponseInterface The response
+     * @return string
      */
-    public function doRequest($method, array $data);
+    public function getMethod();
+
+    /**
+     * Calling method params.
+     *
+     * @return array
+     */
+    public function getParams();
 }
