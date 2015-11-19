@@ -10,7 +10,7 @@ Best install with Composer
 
 1. You don't have Composer?
    Download it `php -r "readfile('https://getcomposer.org/installer');" | php`
-2. Download the library `composer require mikemix/wiziq-integration:~1.0`
+2. Download the library `composer require mikemix/wiziq-integration`
    Rules of [semantic versioning](http://semver.org) apply.
 
 ### Unit tests
