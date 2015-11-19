@@ -20,5 +20,6 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($response->isSuccess());
         $this->assertSame(403, $response->getErrorCode());
         $this->assertSame("Forbidden: The request is refused by the API.", $response->getErrorMessage());
+        $this->assertSame($this->failedResponse, $response->getResponse());
     }
 }

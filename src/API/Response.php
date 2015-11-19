@@ -44,4 +44,14 @@ class Response
 
         return (string)$this->xml->error[0]['msg'];
     }
+
+    /**
+     * Return XML response from Wiziq
+     *
+     * @return \SimpleXMLElement
+     */
+    public function getResponse()
+    {
+        return $this->xml;
+    }
 }
