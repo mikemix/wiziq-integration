@@ -1,18 +1,16 @@
 <?php
 namespace mikemix\Wiziq\API;
 
-use mikemix\Wiziq\Common\Api\AuthInterface;
-
-final class Auth implements AuthInterface
+class Auth
 {
     /** @var string */
-    private $secretAcessKey;
+    protected $secretAcessKey;
 
     /** @var string */
-    private $accessKey;
+    protected $accessKey;
 
     /** @var int */
-    private $currentTime;
+    protected $currentTime;
 
     public function __construct($secretAcessKey, $accessKey, $currentTime = null)
     {
@@ -22,10 +20,13 @@ final class Auth implements AuthInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param string $methodName Method name
+     * @param array $data        Method payload
+     * @return array             Send ready request payload
      */
-    public function prepareRequest($methodName, array $data)
+    public function preparePayload($methodName, array $data)
     {
+        $requestParameters = [];
         $requestParameters['access_key'] = $this->accessKey;
         $requestParameters['timestamp']  = $this->currentTime;
         $requestParameters['method']     = $methodName;
@@ -52,7 +53,7 @@ final class Auth implements AuthInterface
      * @param string $data
      * @return string
      */
-    private function hmacsha1($data)
+    protected function hmacsha1($data)
     {
         $key       = urlencode($this->secretAcessKey);
         $blocksize = 64;

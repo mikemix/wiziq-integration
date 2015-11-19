@@ -1,53 +1,57 @@
 <?php
 namespace mikemix\Wiziq\API;
 
-use mikemix\Wiziq\Common\Api\ResponseInterface;
-
-class Response implements ResponseInterface
+class Response
 {
-    /** @var array */
-    protected $response;
+    /** @var \SimpleXMLElement */
+    protected $xml;
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function createFrom(\SimpleXMLElement $xml)
+    public function __construct(\SimpleXMLElement $xml)
     {
-        $response = new self();
-        $response->response = json_decode(json_encode($xml), true);
-
-        return $response;
+        $this->xml = $xml;
     }
 
     /**
-     * {@inheritdoc}
+     * Was this API call successful
+     *
+     * @return bool
      */
     public function isSuccess()
     {
-        return $this->response['@attributes']['status'] !== 'fail';
+        return (string)$this->xml['status'] !== 'fail';
     }
 
     /**
-     * {@inheritdoc}
+     * If not return error code
      */
     public function getErrorCode()
     {
         if ($this->isSuccess()) {
-            throw new \BadMethodCallException('Ten response jest prawidlowy i nie posiada numeru bledu');
+            throw new \BadMethodCallException('Response is correct, no error code available');
         }
 
-        return (int)$this->response['error']['@attributes']['code'];
+        return (int)$this->xml->error[0]['code'];
     }
 
     /**
-     * {@inheritdoc}
+     * If not return error message
      */
     public function getErrorMessage()
     {
         if ($this->isSuccess()) {
-            throw new \BadMethodCallException('Ten response jest prawidlowy i nie posiada numeru bledu');
+            throw new \BadMethodCallException('Response is correct, no error message available');
         }
 
-        return (string)$this->response['error']['@attributes']['msg'];
+        return (string)$this->xml->error[0]['msg'];
+    }
+
+    /**
+     * Return XML response from Wiziq
+     *
+     * @return \SimpleXMLElement
+     */
+    public function getResponse()
+    {
+        return $this->xml;
     }
 }

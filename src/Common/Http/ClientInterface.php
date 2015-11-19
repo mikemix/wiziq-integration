@@ -1,12 +1,12 @@
 <?php
-namespace mikemix\Wiziq\Common\Provider;
+namespace mikemix\Wiziq\Common\Http;
 
-interface ProviderInterface
+interface ClientInterface
 {
     /**
      * @param string $url  URL to contact
      * @param array  $data POST data to send
-     * @return string
+     * @return string RAW wiziq response
      *
      * @throws Exception\InvalidResponseException When no data was returned
      */

@@ -1,17 +1,17 @@
 <?php
-namespace mikemix\Wiziq\Tests\Provider;
+namespace mikemix\Wiziq\Tests\Http;
 
-use mikemix\Wiziq\Common\Provider\Exception\InvalidResponseException;
-use mikemix\Wiziq\Provider\CurlProvider;
+use mikemix\Wiziq\Common\Http\Exception\InvalidResponseException;
+use mikemix\Wiziq\Http\CurlClient;
 
-class CurlProviderTest extends \PHPUnit_Framework_TestCase
+class CurlClientTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var CurlProvider */
-    private $provider;
+    /** @var CurlClient */
+    private $client;
 
     public function setUp()
     {
-        $this->provider = new CurlProvider();
+        $this->client = new CurlClient();
     }
 
     public function testValidResponseReturnsResponse()
@@ -20,14 +20,14 @@ class CurlProviderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             file_get_contents($testFile),
-            $this->provider->getResponse($this->convertPathToUri($testFile), [])
+            $this->client->getResponse($this->convertPathToUri($testFile), [])
         );
     }
 
     public function testInvalidResponseThrowsException()
     {
         $this->setExpectedException(InvalidResponseException::class);
-        $this->provider->getResponse('', []);
+        $this->client->getResponse('', []);
     }
 
     private function convertPathToUri($path)
