@@ -25,7 +25,9 @@ class Teacher
         $canScheduleClass = false,
         $isActive = true
     ) {
-        if (strlen($name) > 50) {
+        $name = trim($name);
+
+        if (!$name || strlen($name) > 50) {
             throw new \InvalidArgumentException(
                 'Please pass valid name parameter not more than 50 characters.'
             );
