@@ -1,26 +1,20 @@
 <?php
 namespace mikemix\Wiziq\API;
 
-use mikemix\Wiziq\Common\Api\ResponseInterface;
-
-class Response implements ResponseInterface
+class Response
 {
     /** @var array */
     protected $response;
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function createFrom(\SimpleXMLElement $xml)
+    public function __construct(\SimpleXMLElement $xml)
     {
-        $response = new self();
-        $response->response = json_decode(json_encode($xml), true);
-
-        return $response;
+        $this->response = json_decode(json_encode($xml), true);
     }
 
     /**
-     * {@inheritdoc}
+     * Was this API call successful
+     *
+     * @return bool
      */
     public function isSuccess()
     {
@@ -28,7 +22,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * {@inheritdoc}
+     * If not return error code
      */
     public function getErrorCode()
     {
@@ -40,7 +34,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * {@inheritdoc}
+     * If not return error message
      */
     public function getErrorMessage()
     {

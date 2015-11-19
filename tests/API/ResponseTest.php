@@ -15,12 +15,12 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateFromXmlResponse()
     {
-        $this->assertInstanceOf(Response::class, Response::createFrom($this->failedResponse));
+        $this->assertInstanceOf(Response::class, new Response($this->failedResponse));
     }
 
     public function testFailedResponse()
     {
-        $response = Response::createFrom($this->failedResponse);
+        $response = new Response($this->failedResponse);
 
         $this->assertFalse($response->isSuccess());
         $this->assertSame(403, $response->getErrorCode());
