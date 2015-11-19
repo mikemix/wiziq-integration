@@ -1,7 +1,7 @@
 <?php
 namespace mikemix\Wiziq\Tests\ValueObject;
 
-use mikemix\Wiziq\ValueObject\Teacher;
+use mikemix\Wiziq\Entity\Teacher;
 
 class TeacherTest extends \PHPUnit_Framework_TestCase
 {
