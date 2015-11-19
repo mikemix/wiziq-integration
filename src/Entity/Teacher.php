@@ -1,8 +1,8 @@
 <?php
-namespace mikemix\Wiziq\ValueObject;
+namespace mikemix\Wiziq\Entity;
 
 /**
- * Teacher VO
+ * The teacher
  * @see http://developer.wiziq.com/teacher/method/add_teacher
  */
 class Teacher
