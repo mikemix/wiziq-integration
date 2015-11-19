@@ -1,7 +1,7 @@
 <?php
 namespace mikemix\Wiziq\API;
 
-use mikemix\Wiziq\Common\AuthInterface;
+use mikemix\Wiziq\Common\Api\AuthInterface;
 
 final class Auth implements AuthInterface
 {

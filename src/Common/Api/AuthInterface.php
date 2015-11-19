@@ -1,5 +1,5 @@
 <?php
-namespace mikemix\Wiziq\Common;
+namespace mikemix\Wiziq\Common\Api;
 
 interface AuthInterface
 {
