@@ -28,10 +28,10 @@ $sdk     = new Wiziq\API\WiziqSdk($gateway);
 
 try {
     $teacher = new Wiziq\Entity\Teacher('Mike Test', 'mike@test.com', 'his_password');
-    $sdk->addTeacher($teacher);
+    $teacherId = $sdk->addTeacher($teacher);
 
-    sprintf('Teacher %s added!', $teacher);
-} catch (Wiziq\API\Exception\TeacherNotAddedException $e) {
+    sprintf('Teacher %s added with ID %d', $teacher, $teacherId);
+} catch (Wiziq\Common\API\Exception\CallException $e) {
     die($e->getMessage());
 } catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
     die($e->getMessage());

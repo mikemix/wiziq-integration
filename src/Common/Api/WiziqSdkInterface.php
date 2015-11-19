@@ -1,7 +1,6 @@
 <?php
 namespace mikemix\Wiziq\Common\Api;
 
-use mikemix\Wiziq\API\Exception;
 use mikemix\Wiziq\Entity\Teacher;
 
 interface WiziqSdkInterface
@@ -12,7 +11,7 @@ interface WiziqSdkInterface
      * @param Teacher $teacher
      * @return int Teacher's internal wiziq ID
      *
-     * @throws Exception\TeacherNotAddedException
+     * @throws Exception\CallException
      */
     public function addTeacher(Teacher $teacher);
 }

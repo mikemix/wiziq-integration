@@ -13,7 +13,7 @@ try {
     $sdk->addTeacher($teacher);
 
     sprintf('Teacher %s added!', $teacher);
-} catch (Wiziq\API\Exception\TeacherNotAddedException $e) {
+} catch (Wiziq\Common\API\Exception\CallException $e) {
     die($e->getMessage());
 } catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
     die($e->getMessage());
