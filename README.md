@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mikemix/wiziq-integration.svg?branch=master)](https://travis-ci.org/mikemix/wiziq-integration) [![Build Status](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/badges/build.png?b=master)](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/?branch=master)
 
-Integration library with Wiziq's Virtual Classroom API
+Integration library with Wiziq's Virtual Classroom API. Full usage example available in the [example](example.php) file.
 
 ### Installation
 
@@ -13,27 +13,10 @@ Best install with Composer
 2. Download the library `composer require mikemix/wiziq-integration:~1.0`
    Rules of [semantic versioning](http://semver.org) apply.
 
-### Example usage, adding a teacher:
+### Unit tests
 
-```php
-<?php
+phpUnit is required to run the suite.
 
-require 'vendor/autoload.php';
-
-use mikemix\Wiziq;
-
-$auth    = new Wiziq\API\Auth('your-secret-access-key', 'public-access-key');
-$gateway = new Wiziq\API\Gateway($auth);
-$sdk     = new Wiziq\API\WiziqSdk($gateway);
-
-try {
-    $teacher = new Wiziq\Entity\Teacher('Mike Test', 'mike@test.com', 'his_password');
-    $teacherId = $sdk->addTeacher($teacher);
-
-    sprintf('Teacher %s added with ID %d', $teacher, $teacherId);
-} catch (Wiziq\Common\API\Exception\CallException $e) {
-    die($e->getMessage());
-} catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
-    die($e->getMessage());
-}
-```
+1. `cd /into/the/project/directory`
+1. `composer install`
+2. `phpunit`
