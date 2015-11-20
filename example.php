@@ -15,7 +15,7 @@ try {
     $teacherId = $sdk->addTeacher($teacher);
 
     sprintf('Teacher %s added!', $teacher);
-} catch (Wiziq\Common\API\Exception\CallException $e) {
+} catch (Wiziq\Common\Api\Exception\CallException $e) {
     die($e->getMessage());
 } catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
     die($e->getMessage());
@@ -28,7 +28,7 @@ try {
     $sdk->editTeacher($teacherId, $teacher);
 
     sprintf('Teacher %s edited!', $teacher);
-} catch (Wiziq\Common\API\Exception\CallException $e) {
+} catch (Wiziq\Common\Api\Exception\CallException $e) {
     die($e->getMessage());
 } catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
     die($e->getMessage());
@@ -40,7 +40,7 @@ try {
     $details = $sdk->getTeacherDetails($teacherId);
 
     sprintf('Teacher details: %s', var_export($details, true));
-} catch (Wiziq\Common\API\Exception\CallException $e) {
+} catch (Wiziq\Common\Api\Exception\CallException $e) {
     die($e->getMessage());
 } catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
     die($e->getMessage());

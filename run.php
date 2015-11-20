@@ -16,7 +16,7 @@ try {
 
     sprintf('Teacher %s added with ID %d', $teacher, $teacherId);
     echo $teacherId;
-} catch (Wiziq\Common\API\Exception\CallException $e) {
+} catch (Wiziq\Common\Api\Exception\CallException $e) {
     die($e->getMessage());
 } catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
     die($e->getMessage());

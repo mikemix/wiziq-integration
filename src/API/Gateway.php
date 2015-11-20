@@ -1,8 +1,8 @@
 <?php
 namespace mikemix\Wiziq\API;
 
-use mikemix\Wiziq\Common\API\Exception\CallException;
-use mikemix\Wiziq\Common\API\RequestInterface;
+use mikemix\Wiziq\Common\Api\Exception\CallException;
+use mikemix\Wiziq\Common\Api\RequestInterface;
 use mikemix\Wiziq\Common\Http\ClientInterface;
 use mikemix\Wiziq\Http\CurlClient;
 

@@ -1,5 +1,5 @@
 <?php
-namespace mikemix\Wiziq\Common\API\Exception;
+namespace mikemix\Wiziq\Common\Api\Exception;
 
 use mikemix\Wiziq\API\Response;
 

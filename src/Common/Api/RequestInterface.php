@@ -1,5 +1,5 @@
 <?php
-namespace mikemix\Wiziq\Common\API;
+namespace mikemix\Wiziq\Common\Api;
 
 interface RequestInterface
 {

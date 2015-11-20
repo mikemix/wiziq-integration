@@ -1,7 +1,7 @@
 <?php
 namespace mikemix\Wiziq\API\Request;
 
-use mikemix\Wiziq\Common\API\RequestInterface;
+use mikemix\Wiziq\Common\Api\RequestInterface;
 
 class GetTeacherDetails implements RequestInterface
 {
