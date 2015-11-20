@@ -1,6 +1,7 @@
 <?php
 namespace mikemix\Wiziq\API;
 
+use mikemix\Wiziq\Common\API\Exception\CallException;
 use mikemix\Wiziq\Common\Api\RequestInterface;
 use mikemix\Wiziq\Common\Http\ClientInterface;
 use mikemix\Wiziq\Http\CurlClient;
@@ -30,7 +31,10 @@ class Gateway
 
     /**
      * @param RequestInterface $wiziqRequest
-     * @return Response|object
+     *
+     * @return \SimpleXMLElement
+     *
+     * @throws CallException If Wiziq declined the request
      */
     public function sendRequest(RequestInterface $wiziqRequest)
     {
@@ -41,6 +45,10 @@ class Gateway
         $xmlObject   = simplexml_load_string($rawResponse);
         $response    = new Response($xmlObject);
 
-        return $response;
+        if (!$response->isSuccess()) {
+            throw CallException::from($response);
+        }
+
+        return $response->getResponse();
     }
 }

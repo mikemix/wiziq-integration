@@ -2,18 +2,17 @@
 namespace mikemix\Wiziq\API;
 
 use mikemix\Wiziq\Common\Api\Exception;
-use mikemix\Wiziq\Common\Api\RequestInterface;
 use mikemix\Wiziq\Common\Api\WiziqSdkInterface;
 use mikemix\Wiziq\Entity\Teacher;
 
 class WiziqSdk implements WiziqSdkInterface
 {
     /** @var Gateway */
-    protected $requester;
+    protected $gateway;
 
     public function __construct(Gateway $requester)
     {
-        $this->requester = $requester;
+        $this->gateway = $requester;
     }
 
     /**
@@ -21,7 +20,7 @@ class WiziqSdk implements WiziqSdkInterface
      */
     public function addTeacher(Teacher $teacher)
     {
-        return (int)$this->makeCall(new Request\AddTeacher($teacher))
+        return (int)$this->gateway->sendRequest(new Request\AddTeacher($teacher))
             ->add_teacher[0]->teacher_id;
     }
 
@@ -30,7 +29,7 @@ class WiziqSdk implements WiziqSdkInterface
      */
     public function editTeacher($teacherId, Teacher $teacher)
     {
-        $this->makeCall(new Request\EditTeacher($teacherId, $teacher));
+        $this->gateway->sendRequest(new Request\EditTeacher($teacherId, $teacher));
     }
 
     /**
@@ -43,7 +42,7 @@ class WiziqSdk implements WiziqSdkInterface
      */
     public function getTeacherDetails($teacherId)
     {
-        $response = (array)$this->makeCall(new Request\GetTeacherDetails($teacherId))
+        $response = (array)$this->gateway->sendRequest(new Request\GetTeacherDetails($teacherId))
             ->get_teacher_details[0]->teacher_details_list[0]->teacher_details[0];
 
         return [
@@ -59,20 +58,5 @@ class WiziqSdk implements WiziqSdkInterface
             'can_schedule_class' => (bool)(string)$response['can_schedule_class'],
             'is_active'          => (bool)(string)$response['is_active'],
         ];
-
-    }
-
-    /**
-     * @param RequestInterface $request
-     * @return \SimpleXMLElement|object
-     */
-    private function makeCall(RequestInterface $request)
-    {
-        $response = $this->requester->sendRequest($request);
-        if (!$response->isSuccess()) {
-            throw Exception\CallException::from($response);
-        }
-
-        return $response->getResponse();
     }
 }
