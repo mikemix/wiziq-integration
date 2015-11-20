@@ -15,8 +15,9 @@ Best install with Composer
 
 ### Unit tests
 
-phpUnit is required to run the suite.
+phpUnit and Composer are required to run the suite.
 
-1. `cd /into/the/project/directory`
-1. `composer install`
-2. `phpunit`
+1. `git clone https://github.com/mikemix/wiziq-integration.git`
+2. `cd wiziq-integration`
+3. `composer install`
+4. `phpunit`
