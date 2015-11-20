@@ -1,5 +1,5 @@
 <?php
-namespace mikemix\Wiziq\Tests\ValueObject;
+namespace mikemix\Wiziq\Tests\Entity;
 
 use mikemix\Wiziq\Entity\Teacher;
 
