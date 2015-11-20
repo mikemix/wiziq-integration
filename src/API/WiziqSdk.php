@@ -34,6 +34,35 @@ class WiziqSdk implements WiziqSdkInterface
     }
 
     /**
+     * Get $teacherId details
+     *
+     * @param int $teacherId Wiziq's teacher ID
+     * @return array         Teacher's details
+     *
+     * @throws Exception\CallException
+     */
+    public function getTeacherDetails($teacherId)
+    {
+        $response = (array)$this->makeCall(new Request\GetTeacherDetails($teacherId))
+            ->get_teacher_details[0]->teacher_details_list[0]->teacher_details[0];
+
+        return [
+            'teacher_id'         => (int)$response['teacher_id'],
+            'name'               => (string)$response['name'],
+            'email'              => (string)$response['email'],
+            'password'           => (string)$response['password'],
+            'phone_number'       => (string)$response['phone_number'],
+            'mobile_number'      => (string)$response['mobile_number'],
+            'about_the_teacher'  => (string)$response['about_the_teacher'],
+            'image'              => (string)$response['image'],
+            'time_zone'          => (string)$response['time_zone'],
+            'can_schedule_class' => (bool)(string)$response['can_schedule_class'],
+            'is_active'          => (bool)(string)$response['is_active'],
+        ];
+
+    }
+
+    /**
      * @param RequestInterface $request
      * @return \SimpleXMLElement|object
      */

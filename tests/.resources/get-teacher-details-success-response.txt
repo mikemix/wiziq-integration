@@ -1,0 +1,20 @@
+<rsp status="ok" call_id="72fe7bbe8df0">
+  <method>get_teacher_details</method>
+  <get_teacher_details status="true">
+    <teacher_details_list>
+      <teacher_details>
+        <teacher_id><![CDATA[1482]]></teacher_id>
+        <name><![CDATA[Mike Lar]]></name>
+        <email><![CDATA[mike@example.com]]></email>
+        <password><![CDATA[xxxxxx]]></password>
+        <phone_number><![CDATA[+1 xxxxxxxxxx]]></phone_number>
+        <mobile_number><![CDATA[+1 xxxxxxxxxx]]></mobile_number>
+        <about_the_teacher><![CDATA[Online Facilitator and Teacher, British Columbia, Canada]]></about_the_teacher>
+        <image><![CDATA[http://wqimg.s3.amazonaws.com/org/ut/umt/nav.gif]]></image>
+        <time_zone><![CDATA[23]]></time_zone>
+        <can_schedule_class><![CDATA[1]]></can_schedule_class>
+        <is_active><![CDATA[1]]></is_active>
+      </teacher_details>
+    </teacher_details_list>
+  </get_teacher_details>
+</rsp>

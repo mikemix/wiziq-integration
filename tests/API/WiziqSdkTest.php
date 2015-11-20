@@ -4,6 +4,7 @@ namespace mikemix\Wiziq\Tests\API;
 use mikemix\Wiziq\API\Gateway;
 use mikemix\Wiziq\API\Request\AddTeacher;
 use mikemix\Wiziq\API\Request\EditTeacher;
+use mikemix\Wiziq\API\Request\GetTeacherDetails;
 use mikemix\Wiziq\API\Response;
 use mikemix\Wiziq\API\WiziqSdk;
 use mikemix\Wiziq\Common\API\Exception\CallException;
@@ -94,5 +95,34 @@ class WiziqSdkTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException(CallException::class);
         $this->sdk->editTeacher(12345, new Teacher('Mike Test', 'mike@test.com', 'password'));
+    }
+
+    public function testGetTeacherDetailsSuccessCall()
+    {
+        $teacherId = 1482;
+
+        $this->gateway->expects($this->once())
+            ->method('sendRequest')
+            ->with($this->equalTo(new GetTeacherDetails($teacherId)))
+            ->will($this->returnValue($this->response));
+
+        $this->response->expects($this->once())->method('isSuccess')->will($this->returnValue(true));
+        $this->response->expects($this->once())->method('getResponse')->will($this->returnValue(
+            simplexml_load_string(file_get_contents(__DIR__ . '/../.resources/get-teacher-details-success-response.txt'))
+        ));
+
+        $this->assertSame([
+            'teacher_id'         => 1482,
+            'name'               => 'Mike Lar',
+            'email'              => 'mike@example.com',
+            'password'           => 'xxxxxx',
+            'phone_number'       => '+1 xxxxxxxxxx',
+            'mobile_number'      => '+1 xxxxxxxxxx',
+            'about_the_teacher'  => 'Online Facilitator and Teacher, British Columbia, Canada',
+            'image'              => 'http://wqimg.s3.amazonaws.com/org/ut/umt/nav.gif',
+            'time_zone'          => '23',
+            'can_schedule_class' => true,
+            'is_active'          => true,
+        ], $this->sdk->getTeacherDetails($teacherId));
     }
 }

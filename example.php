@@ -33,3 +33,15 @@ try {
 } catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
     die($e->getMessage());
 }
+
+### GET TEACHER DETAILS
+
+try {
+    $details = $sdk->getTeacherDetails($teacherId);
+
+    sprintf('Teacher details: %s', var_export($details, true));
+} catch (Wiziq\Common\API\Exception\CallException $e) {
+    die($e->getMessage());
+} catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
+    die($e->getMessage());
+}
