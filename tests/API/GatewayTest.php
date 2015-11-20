@@ -3,7 +3,7 @@ namespace mikemix\Wiziq\Tests\API;
 
 use mikemix\Wiziq\API\Auth;
 use mikemix\Wiziq\API\Gateway;
-use mikemix\Wiziq\Common\API\Exception\CallException;
+use mikemix\Wiziq\Common\Api\Exception\CallException;
 use mikemix\Wiziq\Common\Api\RequestInterface;
 use mikemix\Wiziq\Common\Http\ClientInterface;
 
