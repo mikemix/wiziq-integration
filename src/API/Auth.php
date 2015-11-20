@@ -51,30 +51,20 @@ class Auth
      * Based on code from api.wiziq.com
      *
      * @param string $data
+     * @param int $blocksize
      * @return string
      */
-    protected function hmacsha1($data)
+    protected function hmacsha1($data, $blocksize = 64)
     {
-        $key       = urlencode($this->secretAcessKey);
-        $blocksize = 64;
+        $key = urlencode($this->secretAcessKey);
 
         if (strlen($key) > $blocksize) {
             $key = pack('H*', sha1($key));
         }
 
-        $key  = str_pad($key,$blocksize,chr(0x00));
-        $ipad = str_repeat(chr(0x36),$blocksize);
-        $opad = str_repeat(chr(0x5c),$blocksize);
-        $hmac = pack(
-            'H*',sha1(
-                ($key^$opad).pack(
-                    'H*',sha1(
-                        ($key^$ipad).$data
-                    )
-                )
-            )
-        );
-
-        return $hmac;
+        $key  = str_pad($key, $blocksize, chr(0x00));
+        $ipad = str_repeat(chr(0x36), $blocksize);
+        $opad = str_repeat(chr(0x5c), $blocksize);
+        return pack('H*', sha1(($key^$opad).pack('H*', sha1(($key^$ipad).$data))));
     }
 }
