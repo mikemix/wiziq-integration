@@ -1,8 +1,8 @@
 <?php
 namespace mikemix\Wiziq\API;
 
-use mikemix\Wiziq\Common\Api\Exception;
-use mikemix\Wiziq\Common\Api\WiziqSdkInterface;
+use mikemix\Wiziq\Common\API\Exception;
+use mikemix\Wiziq\Common\API\WiziqSdkInterface;
 use mikemix\Wiziq\Entity\Teacher;
 
 class WiziqSdk implements WiziqSdkInterface

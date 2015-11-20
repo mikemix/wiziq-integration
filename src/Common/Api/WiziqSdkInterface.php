@@ -1,5 +1,5 @@
 <?php
-namespace mikemix\Wiziq\Common\Api;
+namespace mikemix\Wiziq\Common\API;
 
 use mikemix\Wiziq\Entity\Teacher;
 

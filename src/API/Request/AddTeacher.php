@@ -1,7 +1,7 @@
 <?php
 namespace mikemix\Wiziq\API\Request;
 
-use mikemix\Wiziq\Common\Api\RequestInterface;
+use mikemix\Wiziq\Common\API\RequestInterface;
 use mikemix\Wiziq\Entity\Teacher;
 
 class AddTeacher implements RequestInterface
