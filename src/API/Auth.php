@@ -40,6 +40,14 @@ class Auth
             $signatureBase .= "$key=$value";
         }
 
+        foreach ($data as $key => $val) {
+            if (is_bool($data[$key])) {
+                $data[$key] = (int)$val;
+            } elseif (null === $val) {
+                $data[$key] = '';
+            }
+        }
+
         return array_merge(
             $requestParameters,
             ['signature' => base64_encode($this->hmacsha1($signatureBase))],
