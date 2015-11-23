@@ -7,6 +7,6 @@ class CallException extends \RuntimeException
 {
     public static function from(Response $response)
     {
-        return new self(sprintf('%d: %s', $response->getErrorCode(), $response->getErrorMessage()));
+        return new self($response->getErrorMessage(), $response->getErrorCode());
     }
 }
