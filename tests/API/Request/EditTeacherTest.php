@@ -32,12 +32,17 @@ class EditTeacherTest extends \PHPUnit_Framework_TestCase
     public function testGetParams()
     {
         $params = [
-            'teacher_id' => 12345,
-            'name'       => 'Test Mike',
-            'email'      => 'test@mike.com',
-            'password'   => 'password',
-            'image'      => 'http://g.gl/img.jpg',
-            'is_active'  => true,
+            'teacher_id'         => 12345,
+            'name'               => 'Test Mike',
+            'email'              => 'test@mike.com',
+            'password'           => 'password',
+            'image'              => 'http://g.gl/img.jpg',
+            'is_active'          => true,
+            'phone_number'       => null,
+            'mobile_number'      => null,
+            'time_zone'          => null,
+            'about_the_teacher'  => null,
+            'can_schedule_class' => false,
         ];
 
         $this->assertEquals($params, $this->request->getParams());
