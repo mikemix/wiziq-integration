@@ -4,6 +4,7 @@ namespace mikemix\Wiziq\Tests\API;
 use mikemix\Wiziq\API\Gateway;
 use mikemix\Wiziq\API\Request;
 use mikemix\Wiziq\API\TeacherApi;
+use mikemix\Wiziq\Common\Api\TeacherApiInterface;
 use mikemix\Wiziq\Entity\Teacher;
 
 class TeacherApiTest extends \PHPUnit_Framework_TestCase
@@ -22,6 +23,11 @@ class TeacherApiTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $this->sdk = new TeacherApi($this->gateway);
+    }
+
+    public function testInterface()
+    {
+        $this->assertInstanceOf(TeacherApiInterface::class, $this->sdk);
     }
 
     public function testAddTeacher()
