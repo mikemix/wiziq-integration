@@ -17,7 +17,7 @@ try {
 
     $teacherId = $api->addTeacher($teacher);
 
-    sprintf('Teacher %s added!', $teacher);
+    printf('Teacher %s added!', $teacher);
 } catch (Wiziq\Common\Api\Exception\CallException $e) {
     die($e->getMessage());
 } catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
@@ -40,7 +40,7 @@ try {
     $teacher = Wiziq\Entity\Teacher::build('Mike Test', 'mikexxx@test.com', 'his_new_password');
     $api->editTeacher($teacherId, $teacher);
 
-    sprintf('Teacher %s edited!', $teacher);
+    printf('Teacher %s edited!', $teacher);
 } catch (Wiziq\Common\Api\Exception\CallException $e) {
     die($e->getMessage());
 } catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
@@ -62,7 +62,7 @@ $api     = new Wiziq\API\TeacherApi($gateway);
 try {
     $details = $api->getTeacherDetails($teacherId);
 
-    sprintf('Teacher details: %s', var_export($details, true));
+    printf('Teacher details: %s', var_export($details, true));
 } catch (Wiziq\Common\Api\Exception\CallException $e) {
     die($e->getMessage());
 } catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
