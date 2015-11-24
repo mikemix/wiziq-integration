@@ -10,7 +10,8 @@ class AuthTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->service = new Auth('HU1HDyP3QRB4eM6fIdPr5g==', 'G18pttjJhBM=', 1447856244);
+        $this->service = new Auth('HU1HDyP3QRB4eM6fIdPr5g==', 'G18pttjJhBM=');
+        $this->service->setCurrentTime(1447856244);
     }
 
     public function testPrepareRequestCreateValidRequest()

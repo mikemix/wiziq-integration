@@ -12,11 +12,10 @@ class Auth
     /** @var int */
     protected $currentTime;
 
-    public function __construct($secretAcessKey, $accessKey, $currentTime = null)
+    public function __construct($secretAcessKey, $accessKey)
     {
         $this->secretAcessKey = $secretAcessKey;
         $this->accessKey      = $accessKey;
-        $this->currentTime    = $currentTime ? (int)$currentTime : time();
     }
 
     /**
@@ -26,20 +25,26 @@ class Auth
      */
     public function preparePayload($methodName, array $data)
     {
-        $requestParameters = [];
-        $requestParameters['access_key'] = $this->accessKey;
-        $requestParameters['timestamp']  = $this->currentTime;
-        $requestParameters['method']     = $methodName;
+        $params = [];
+        $params['access_key'] = $this->accessKey;
+        $params['timestamp']  = $this->getCurrentTime();
+        $params['method']     = $methodName;
 
-        $signatureBase = '';
-        foreach ($requestParameters as $key => $value) {
-            if ($signatureBase) {
-                $signatureBase .= '&';
-            }
+        $hmacsha = $this->hmacsha1(urldecode(http_build_query($params, '', '&')));
 
-            $signatureBase .= "$key=$value";
-        }
+        return array_merge(
+            $params,
+            ['signature' => base64_encode($hmacsha)],
+            $this->prepareValues($data)
+        );
+    }
 
+    /**
+     * @param array $data
+     * @return array
+     */
+    protected function prepareValues(array $data)
+    {
         foreach ($data as $key => $val) {
             if (is_bool($data[$key])) {
                 $data[$key] = (int)$val;
@@ -48,11 +53,7 @@ class Auth
             }
         }
 
-        return array_merge(
-            $requestParameters,
-            ['signature' => base64_encode($this->hmacsha1($signatureBase))],
-            $data
-        );
+        return $data;
     }
 
     /**
@@ -74,5 +75,26 @@ class Auth
         $ipad = str_repeat(chr(0x36), $blocksize);
         $opad = str_repeat(chr(0x5c), $blocksize);
         return pack('H*', sha1(($key^$opad).pack('H*', sha1(($key^$ipad).$data))));
+    }
+
+    /**
+     * @return int
+     */
+    protected function getCurrentTime()
+    {
+        if (!$this->currentTime) {
+            $this->currentTime = time();
+        }
+
+        return $this->currentTime;
+    }
+
+    /**
+     * @param int $time
+     * @internal For tests only
+     */
+    public function setCurrentTime($time)
+    {
+        $this->currentTime = $time;
     }
 }
