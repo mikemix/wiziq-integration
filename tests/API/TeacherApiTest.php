@@ -32,7 +32,7 @@ class TeacherApiTest extends \PHPUnit_Framework_TestCase
 
     public function testAddTeacher()
     {
-        $teacher = new Teacher('Mike Test', 'mike@test.com', 'password');
+        $teacher = Teacher::build('Mike Test', 'mike@test.com', 'password');
 
         $this->gateway->expects($this->once())
             ->method('sendRequest')
@@ -45,7 +45,7 @@ class TeacherApiTest extends \PHPUnit_Framework_TestCase
     public function testEditTeacher()
     {
         $teacherId = 12345;
-        $teacher   = new Teacher('Mike Test', 'mike@test.com', 'password');
+        $teacher   = Teacher::build('Mike Test', 'mike@test.com', 'password');
 
         $this->gateway->expects($this->once())
             ->method('sendRequest')

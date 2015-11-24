@@ -34,7 +34,7 @@ class Teacher
     private $isActive = 1;
 
 
-    public function __construct($name, $email, $password)
+    private function __construct($name, $email, $password)
     {
         $this->name     = (string)$name;
         $this->email    = (string)$email;

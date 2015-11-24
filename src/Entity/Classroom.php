@@ -12,8 +12,12 @@ class Classroom
     /** @var string */
     private $presenterEmail;
 
-
-    public function __construct($title, \DateTime $startTime, $presenterEmail)
+    /**
+     * @param string    $title
+     * @param \DateTime $startTime
+     * @param string    $presenterEmail
+     */
+    private function __construct($title, \DateTime $startTime, $presenterEmail)
     {
         $this->title          = (string)$title;
         $this->startTime      = $startTime->format('d/m/Y H:i:s');
@@ -21,9 +25,9 @@ class Classroom
     }
 
     /**
-     * @param string     $title
-     * @param \DateTime  $startTime
-     * @param string     $presenterEmail
+     * @param string    $title
+     * @param \DateTime $startTime
+     * @param string    $presenterEmail
      * @return self
      */
     public static function build($title, \DateTime $startTime, $presenterEmail)

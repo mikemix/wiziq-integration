@@ -14,7 +14,7 @@ class EditTeacherTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->teacher = new Teacher('Test Mike', 'test@mike.com', 'password');
+        $this->teacher = Teacher::build('Test Mike', 'test@mike.com', 'password');
         $this->request = new EditTeacher(12345, $this->teacher);
     }
 
