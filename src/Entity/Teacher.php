@@ -1,120 +1,44 @@
 <?php
 namespace mikemix\Wiziq\Entity;
 
-/**
- * The teacher
- * @see http://developer.wiziq.com/teacher/method/add_teacher
- */
 class Teacher
 {
     /** @var string */
-    private $name, $email, $password, $image, $phoneNumber, $mobileNumber, $timeZone, $about;
+    private $name;
 
-    /** @var bool */
-    private $canScheduleClass, $isActive;
+    /** @var string */
+    private $email;
 
-    public function __construct(
-        $name,
-        $email,
-        $password,
-        $image = null,
-        $phoneNumber = null,
-        $mobileNumber = null,
-        $timeZone = null,
-        $about = null,
-        $canScheduleClass = false,
-        $isActive = true
-    ) {
-        $this->setName($name);
-        $this->setEmail($email);
-        $this->setPassword($password);
-        $this->setImage($image);
-        $this->setPhoneNumber($phoneNumber);
-        $this->setMobileNumber($mobileNumber);
-        $this->setTimeZone($timeZone);
-        $this->setAbout($about);
-        $this->setCanScheduleclass($canScheduleClass);
-        $this->setIsActive($isActive);
-    }
+    /** @var string */
+    private $password;
 
-    /**
-     * @return string
-     */
-    public function getAbout()
+    /** @var string */
+    private $image;
+
+    /** @var string */
+    private $phoneNumber;
+
+    /** @var string */
+    private $mobileNumber;
+
+    /** @var string */
+    private $timeZone;
+
+    /** @var string */
+    private $about;
+
+    /** @var int */
+    private $canScheduleClass;
+
+    /** @var int */
+    private $isActive;
+
+
+    public function __construct($name, $email, $password)
     {
-        return $this->about;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getCanScheduleClass()
-    {
-        return $this->canScheduleClass;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getIsActive()
-    {
-        return $this->isActive;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMobileNumber()
-    {
-        return $this->mobileNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhoneNumber()
-    {
-        return $this->phoneNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTimeZone()
-    {
-        return $this->timeZone;
+        $this->name     = (string)$name;
+        $this->email    = (string)$email;
+        $this->password = (string)$password;
     }
 
     /**
@@ -126,126 +50,102 @@ class Teacher
     }
 
     /**
-     * @param Teacher $teacher
-     * @return bool
-     */
-    public function equals(Teacher $teacher)
-    {
-        return $this->email === $teacher->getEmail();
-    }
-
-    /**
-     * @param string $name
-     */
-    private function setName($name)
-    {
-        $name = trim($name);
-
-        if (!$name || strlen($name) > 50) {
-            throw new \InvalidArgumentException(
-                'Please pass valid name parameter not more than 50 characters.'
-            );
-        }
-
-        $this->name = $name;
-    }
-
-    /**
-     * @param string $email
-     */
-    private function setEmail($email)
-    {
-        if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-            throw new \InvalidArgumentException('Invalid email address');
-        }
-
-        $this->email = $email;
-    }
-
-    /**
-     * @param string $password
-     */
-    private function setPassword($password)
-    {
-        $passwordLength = strlen(trim($password));
-        if ($passwordLength < 6 || $passwordLength > 15) {
-            throw new \InvalidArgumentException(
-                'Password with Spaces, with less than 6 characters length and more than 15 characters is not allowed.'
-            );
-        }
-
-        $this->password = $password;
-    }
-
-    /**
-     * @param string $about
-     */
-    private function setAbout($about = null)
-    {
-        $this->about = $about;
-    }
-
-    /**
-     * @param boolean $canScheduleClass
-     */
-    private function setCanScheduleClass($canScheduleClass)
-    {
-        $this->canScheduleClass = (bool)$canScheduleClass;
-    }
-
-    /**
      * @param string $image
+     * @return self
      */
-    private function setImage($image = null)
+    public function withImage($image)
     {
-        $this->image = $image;
-    }
+        $self = clone $this;
+        $self->image = (string)$image;
 
-    /**
-     * @param boolean $isActive
-     */
-    private function setIsActive($isActive)
-    {
-        $this->isActive = (bool)$isActive;
-    }
-
-    /**
-     * @param string $mobileNumber
-     */
-    private function setMobileNumber($mobileNumber)
-    {
-        if ($mobileNumber && !preg_match('/\+\d{1,3}\ \d{9,10}/', $mobileNumber)) {
-            throw new \InvalidArgumentException(
-                'Please pass valid work phone with country code or leave blank. For example:+44 9999999999.'
-            );
-        }
-
-        $this->mobileNumber = $mobileNumber;
+        return $self;
     }
 
     /**
      * @param string $phoneNumber
+     * @return self
      */
-    private function setPhoneNumber($phoneNumber = null)
+    public function withPhoneNumber($phoneNumber)
     {
-        if ($phoneNumber && !preg_match('/\+\d{1,3}\ \d{9,10}/', $phoneNumber)) {
-            throw new \InvalidArgumentException(
-                'Please pass valid work phone with country code or leave blank. For example:+44 9999999999.'
-            );
-        }
+        $self = clone $this;
+        $self->phoneNumber = (string)$phoneNumber;
 
-        $this->phoneNumber = $phoneNumber;
+        return $self;
+    }
+
+    /**
+     * @param string $mobileNumber
+     * @return self
+     */
+    public function withMobileNumber($mobileNumber)
+    {
+        $self = clone $this;
+        $self->mobileNumber = (string)$mobileNumber;
+
+        return $self;
     }
 
     /**
      * @param string $timeZone
+     * @return self
      */
-    private function setTimeZone($timeZone = null)
+    public function withTimeZone($timeZone)
     {
-        if ($timeZone && !in_array($timeZone, \DateTimeZone::listIdentifiers())) {
-            throw new \InvalidArgumentException('Invalid timezone');
-        }
+        $self = clone $this;
+        $self->timeZone = (string)$timeZone;
 
-        $this->timeZone = $timeZone;
+        return $self;
+    }
+
+    /**
+     * @param string $about
+     * @return self
+     */
+    public function withAbout($about)
+    {
+        $self = clone $this;
+        $self->about = (string)$about;
+
+        return $self;
+    }
+
+    /**
+     * @param string $canScheduleClass
+     * @return self
+     */
+    public function withCanScheduleClass($canScheduleClass)
+    {
+        $self = clone $this;
+        $self->canScheduleClass = (int)(bool)$canScheduleClass;
+
+        return $self;
+    }
+
+    /**
+     * @param string $isActive
+     * @return self
+     */
+    public function withIsActive($isActive)
+    {
+        $self = clone $this;
+        $self->isActive = (int)(bool)$isActive;
+
+        return $self;
+    }
+
+    public function toArray()
+    {
+        return [
+            'name'               => $this->name,
+            'email'              => $this->email,
+            'password'           => $this->password,
+            'image'              => $this->image,
+            'phone_number'       => $this->phoneNumber,
+            'mobile_number'      => $this->mobileNumber,
+            'time_zone'          => $this->timeZone,
+            'about_the_teacher'  => $this->about,
+            'can_schedule_class' => $this->canScheduleClass,
+            'is_active'          => $this->isActive,
+        ];
     }
 }
