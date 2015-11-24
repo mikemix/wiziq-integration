@@ -26,7 +26,7 @@ class ClassroomApi implements ClassroomApiInterface
         return [
             'class_id'      => (int)$response->create[0]->class_details[0]->class_id,
             'recording_url' => (string)$response->create[0]->class_details[0]->recording_url,
-            'presenters'    => $this->getPresentersFromResponse($response)
+            'presenters'    => $this->getPresentersFromResponse($response->create[0]->class_details[0])
         ];
     }
 
@@ -53,7 +53,7 @@ class ClassroomApi implements ClassroomApiInterface
     protected function getPresentersFromResponse(\SimpleXMLElement $response)
     {
         $presenters = [];
-        foreach ($response->create[0]->class_details[0]->presenter_list[0] as $presenter) {
+        foreach ($response->presenter_list[0] as $presenter) {
             $presenters[] = [
                 'email' => (string)$presenter->presenter_email,
                 'url'   => (string)$presenter->presenter_url,
