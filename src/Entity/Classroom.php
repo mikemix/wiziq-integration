@@ -6,7 +6,7 @@ class Classroom
     /** @var string */
     private $title;
 
-    /** @var \DateTime */
+    /** @var string */
     private $startTime;
 
     /** @var string */
@@ -49,9 +49,9 @@ class Classroom
     public function toArray()
     {
         return [
-            'title'               => $this->title,
-            'start_time'              => $this->startTime,
-            'presenter_email'           => $this->presenterEmail,
+            'title'           => $this->title,
+            'start_time'      => $this->startTime,
+            'presenter_email' => $this->presenterEmail,
         ];
     }
 }
