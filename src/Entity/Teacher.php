@@ -13,25 +13,25 @@ class Teacher
     private $password;
 
     /** @var string */
-    private $image;
+    private $image = '';
 
     /** @var string */
-    private $phoneNumber;
+    private $phoneNumber = '';
 
     /** @var string */
-    private $mobileNumber;
+    private $mobileNumber = '';
 
     /** @var string */
-    private $timeZone;
+    private $timeZone = '';
 
     /** @var string */
-    private $about;
+    private $about = '';
 
     /** @var int */
-    private $canScheduleClass;
+    private $canScheduleClass = 0;
 
     /** @var int */
-    private $isActive;
+    private $isActive = 1;
 
 
     public function __construct($name, $email, $password)
