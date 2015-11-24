@@ -5,109 +5,95 @@ use mikemix\Wiziq\Entity\Teacher;
 
 class TeacherTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCannotScheduleClassByDefault()
-    {
-        $object = new Teacher('Mike Test', 'mike@test.com', 'password');
+    /** @var Teacher */
+    private $entity;
 
-        $this->assertFalse($object->getCanScheduleClass());
+    /** @var array */
+    private $expected;
+
+    public function setUp()
+    {
+        $this->entity = Teacher::build('Mike Test', 'mike@test.com', 'password');
+
+        $this->expected = [
+            'name'               => 'Mike Test',
+            'email'              => 'mike@test.com',
+            'password'           => 'password',
+            'image'              => '',
+            'phone_number'       => '',
+            'mobile_number'      => '',
+            'time_zone'          => '',
+            'about_the_teacher'  => '',
+            'can_schedule_class' => 0,
+            'is_active'          => 1,
+        ];
     }
 
-    public function testIsActiveByDefault()
+    public function testBuildBasic()
     {
-        $object = new Teacher('Mike Test', 'mike@test.com', 'password');
-
-        $this->assertTrue($object->getIsActive());
+        $this->assertEquals($this->expected, $this->entity->toArray());
     }
 
-    public function testItDoesNotAllowWithoutName()
+    public function testBuildWithImage()
     {
-        $this->setExpectedException(\InvalidArgumentException::class);
-        new Teacher('  ', 'mike@test.com', 'password');
+        $this->expected['image'] = 'image.jpg';
+        $newEntity = $this->entity->withImage($this->expected['image']);
+
+        $this->assertEquals($this->expected, $newEntity->toArray());
+        $this->assertNotSame($newEntity, $this->entity);
     }
 
-    public function testItDoesNotAllowTooLongName()
+    public function testBuildWithPhoneNumber()
     {
-        $this->setExpectedException(\InvalidArgumentException::class);
-        new Teacher(str_repeat('A', 51), 'mike@test.com', 'password');
+        $this->expected['phone_number'] = '+44 1002003004';
+        $newEntity = $this->entity->withPhoneNumber($this->expected['phone_number']);
+
+        $this->assertEquals($this->expected, $newEntity->toArray());
+        $this->assertNotSame($newEntity, $this->entity);
     }
 
-    public function testItDoesNotAllowTooShortPassword()
+    public function testBuildWithMobileNumber()
     {
-        $this->setExpectedException(\InvalidArgumentException::class);
-        new Teacher('Mike Test', 'mike@test.com', 'passw');
+        $this->expected['mobile_number'] = '+44 1002003004';
+        $newEntity = $this->entity->withMobileNumber($this->expected['mobile_number']);
+
+        $this->assertEquals($this->expected, $newEntity->toArray());
+        $this->assertNotSame($newEntity, $this->entity);
     }
 
-    public function testItDoesNotAllowTooLongPassword()
+    public function testBuildWithTimeZone()
     {
-        $this->setExpectedException(\InvalidArgumentException::class);
-        new Teacher('Mike Test', 'mike@test.com', str_repeat('A', 16));
+        $this->expected['time_zone'] = 'Europe/Warsaw';
+        $newEntity = $this->entity->withTimeZone($this->expected['time_zone']);
+
+        $this->assertEquals($this->expected, $newEntity->toArray());
+        $this->assertNotSame($newEntity, $this->entity);
     }
 
-    public function testItDoesNotAllowInvalidEmail()
+    public function testBuildWithAboutTheTeacher()
     {
-        $this->setExpectedException(\InvalidArgumentException::class);
-        new Teacher('Mike Test', 'mike@test', 'password');
+        $this->expected['about_the_teacher'] = 'about';
+        $newEntity = $this->entity->withAbout($this->expected['about_the_teacher']);
+
+        $this->assertEquals($this->expected, $newEntity->toArray());
+        $this->assertNotSame($newEntity, $this->entity);
     }
 
-    public function testItDoesNotAllowInvalidPhoneNumber()
+    public function testBuildWithCanScheduleClass()
     {
-        $this->setExpectedException(\InvalidArgumentException::class);
-        new Teacher('Mike Test', 'mike@test', 'password', '', '+48 24 50 60 70');
+        $this->expected['can_schedule_class'] = 1;
+        $newEntity = $this->entity->withCanScheduleClass(true);
+
+        $this->assertEquals($this->expected, $newEntity->toArray());
+        $this->assertNotSame($newEntity, $this->entity);
     }
 
-    public function testItDoesNotAllowInvalidMobileNumber()
+    public function testBuildWithIsActive()
     {
-        $this->setExpectedException(\InvalidArgumentException::class);
-        new Teacher('Mike Test', 'mike@test', 'password', '', '+48500600700');
-    }
+        $this->expected['is_active'] = 0;
+        $newEntity = $this->entity->withIsActive(false);
 
-    public function testItDoesNotAllowInvalidTimeZone()
-    {
-        $this->setExpectedException(\InvalidArgumentException::class);
-        new Teacher('Mike Test', 'mike@test', 'password', '', '+48 500600700', '+48 500600700', 'Europe/Kiev');
-    }
-
-    public function testTooString()
-    {
-        $object = new Teacher('Mike Test', 'mike@test.com', 'password');
-
-        $this->assertEquals('Mike Test (mike@test.com)', $object->__toString());
-    }
-
-    public function testEquals()
-    {
-        $object1 = new Teacher('Mike1 Test', 'mike1@test.com', 'password');
-        $object2 = new Teacher('Mike2 Test', 'mike2@test.com', 'password');
-        $object3 = new Teacher('Mike1 Test', 'mike1@test.com', 'password');
-
-        $this->assertTrue($object1->equals($object3));
-        $this->assertFalse($object1->equals($object2));
-    }
-
-    public function testGetters()
-    {
-        $object = new Teacher(
-            'Mike Test',
-            'mike@test.com',
-            'password',
-            'http://g.gl/a.png',
-            '+1 1234567890',
-            '+1 0987654321',
-            'Europe/Warsaw',
-            'about',
-            true,
-            false
-        );
-
-        $this->assertEquals('Mike Test', $object->getName());
-        $this->assertEquals('mike@test.com', $object->getEmail());
-        $this->assertEquals('password', $object->getPassword());
-        $this->assertEquals('http://g.gl/a.png', $object->getImage());
-        $this->assertEquals('+1 1234567890', $object->getPhoneNumber());
-        $this->assertEquals('+1 0987654321', $object->getMobileNumber());
-        $this->assertEquals('Europe/Warsaw', $object->getTimeZone());
-        $this->assertEquals('about', $object->getAbout());
-        $this->assertEquals(true, $object->getCanScheduleClass());
-        $this->assertEquals(false, $object->getIsActive());
+        $this->assertEquals($this->expected, $newEntity->toArray());
+        $this->assertNotSame($newEntity, $this->entity);
     }
 }
