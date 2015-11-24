@@ -1,5 +1,6 @@
-<?php
+### Add the teacher
 
+```php
 require 'vendor/autoload.php';
 
 use mikemix\Wiziq;
@@ -7,8 +8,6 @@ use mikemix\Wiziq;
 $auth    = new Wiziq\API\Auth('your-secret-access-key', 'public-access-key');
 $gateway = new Wiziq\API\Gateway($auth);
 $api     = new Wiziq\API\TeacherApi($gateway);
-
-### ADD THE TEACHER
 
 try {
     $teacher = Wiziq\Entity\Teacher::build('Mike Test', 'mike@test.com', 'his_password')
@@ -24,8 +23,18 @@ try {
 } catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
     die($e->getMessage());
 }
+```
 
-### EDIT THE TEACHER
+### Edit the teacher
+
+```php
+require 'vendor/autoload.php';
+
+use mikemix\Wiziq;
+
+$auth    = new Wiziq\API\Auth('your-secret-access-key', 'public-access-key');
+$gateway = new Wiziq\API\Gateway($auth);
+$api     = new Wiziq\API\TeacherApi($gateway);
 
 try {
     $teacher = Wiziq\Entity\Teacher::build('Mike Test', 'mikexxx@test.com', 'his_new_password');
@@ -37,8 +46,18 @@ try {
 } catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
     die($e->getMessage());
 }
+```
 
-### GET TEACHER DETAILS
+### Get teacher details
+
+```php
+require 'vendor/autoload.php';
+
+use mikemix\Wiziq;
+
+$auth    = new Wiziq\API\Auth('your-secret-access-key', 'public-access-key');
+$gateway = new Wiziq\API\Gateway($auth);
+$api     = new Wiziq\API\TeacherApi($gateway);
 
 try {
     $details = $api->getTeacherDetails($teacherId);
@@ -49,3 +68,4 @@ try {
 } catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
     die($e->getMessage());
 }
+```
