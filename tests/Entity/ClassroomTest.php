@@ -13,7 +13,7 @@ class ClassroomTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->entity = Classroom::build('Title', new \DateTime('2015-12-30 12:30:40'), 'mike@test.com');
+        $this->entity = Classroom::build('Title', 'mike@test.com', new \DateTime('2015-12-30 12:30:40'));
 
         $this->expected = [
             'title'           => 'Title',

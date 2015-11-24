@@ -9,13 +9,32 @@ class CreateTest extends \PHPUnit_Framework_TestCase
     /** @var Classroom */
     private $classroom;
 
+    private $expected = [
+        'title'           => 'Title',
+        'presenter_email' => 'test@mike.com',
+    ];
+
+    private $params = [
+        'title'           => 'Title',
+        'presenter_email' => 'test@mike.com',
+        'filter_empty'    => '',
+    ];
+
     /** @var Create */
     private $request;
 
     public function setUp()
     {
-        $this->classroom = Classroom::build('Title', new \DateTime('2015-12-30 12:30:40'), 'test@mike.com');
-        $this->request   = new Create($this->classroom);
+        $this->classroom = $this->getMockBuilder(Classroom::class)
+            ->setMethods(['toArray'])
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->classroom->expects($this->any())
+            ->method('toArray')
+            ->will($this->returnValue($this->params));
+
+        $this->request = new Create($this->classroom);
     }
 
     public function testGetMethod()
@@ -25,12 +44,6 @@ class CreateTest extends \PHPUnit_Framework_TestCase
 
     public function testGetParams()
     {
-        $params = [
-            'title'           => 'Title',
-            'start_time'      => '30/12/2015 12:30:40',
-            'presenter_email' => 'test@mike.com',
-        ];
-
-        $this->assertEquals($params, $this->request->getParams());
+        $this->assertEquals($this->expected, $this->request->getParams());
     }
 }

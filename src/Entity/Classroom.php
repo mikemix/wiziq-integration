@@ -7,32 +7,32 @@ class Classroom
     private $title;
 
     /** @var string */
-    private $startTime;
+    private $presenterEmail;
 
     /** @var string */
-    private $presenterEmail;
+    private $startTime;
 
     /**
      * @param string    $title
-     * @param \DateTime $startTime
      * @param string    $presenterEmail
+     * @param \DateTime $startTime
      */
-    private function __construct($title, \DateTime $startTime, $presenterEmail)
+    private function __construct($title, $presenterEmail, \DateTime $startTime)
     {
         $this->title          = (string)$title;
-        $this->startTime      = $startTime->format('d/m/Y H:i:s');
         $this->presenterEmail = (string)$presenterEmail;
+        $this->startTime      = $startTime->format('d/m/Y H:i:s');
     }
 
     /**
      * @param string    $title
-     * @param \DateTime $startTime
      * @param string    $presenterEmail
+     * @param \DateTime $startTime
      * @return self
      */
-    public static function build($title, \DateTime $startTime, $presenterEmail)
+    public static function build($title, $presenterEmail, \DateTime $startTime)
     {
-        return new self($title, $startTime, $presenterEmail);
+        return new self($title, $presenterEmail, $startTime);
     }
 
     /**
