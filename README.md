@@ -2,7 +2,10 @@
 
 [![Build Status](https://travis-ci.org/mikemix/wiziq-integration.svg?branch=master)](https://travis-ci.org/mikemix/wiziq-integration) [![Build Status](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/badges/build.png?b=master)](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mikemix/wiziq-integration/?branch=master)
 
-Integration library with Wiziq's Virtual Classroom API. Full usage example available in the [example](example.php) file.
+Integration library with [Wiziq](http://www.wiziq.com)'s API:
+
+1. [Teacher API examples](docs/teacher-api.md)
+2. [Virtual Classroom API examples](docs/virtual-classroom-api.md)
 
 ### Installation
 
@@ -15,9 +18,10 @@ Best install with Composer
 
 ### Unit tests
 
-phpUnit and Composer are required to run the suite.
+phpUnit is required to run the suite.
 
 1. `git clone https://github.com/mikemix/wiziq-integration.git`
 2. `cd wiziq-integration`
-3. `composer install`
+3. `php -r "readfile('https://getcomposer.org/installer');" | php`
+3. `php composer.phar install`
 4. `phpunit`
