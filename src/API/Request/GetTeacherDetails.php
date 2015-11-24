@@ -10,7 +10,7 @@ class GetTeacherDetails implements RequestInterface
 
     public function __construct($teacherId)
     {
-        $this->teacherId = $teacherId;
+        $this->teacherId = (int)$teacherId;
     }
 
     /**
