@@ -3,7 +3,7 @@ namespace mikemix\Wiziq\Common\Api;
 
 use mikemix\Wiziq\Entity\Classroom;
 
-interface VirtualClassroomApiInterface
+interface ClassroomApiInterface
 {
     /**
      * Schedule a class
