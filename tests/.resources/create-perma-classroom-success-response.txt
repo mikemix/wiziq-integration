@@ -1,0 +1,13 @@
+<rsp status="ok" call_id="0ba583afe4da">
+  <method>create_perma_class</method>
+  <create_perma_class status="true">
+    <perma_class_details>
+      <class_master_id>29628</class_master_id>
+      <common_perma_attendee_url><![CDATA[https://www.wiziq.com/class/launch.aspx?%2fpbeqQWORwi%2b839eB3qJlZr%2bIkG1ItLkiMQnBoyjW9i5VUY58wKSgOOk%3d]]></common_perma_attendee_url>
+      <presenter>
+        <presenter_email><![CDATA[teacherinme@gmail.com]]></presenter_email>
+        <presenter_url><![CDATA[https://www.wiziq.com/class/launch.aspx?nVnDx7oTA%2bmTJwBNnZO9GCwZdS7yUDhmpb0twttPeyzKVEf5aK7owa6T]]></presenter_url>
+      </presenter>
+    </perma_class_details>
+  </create_perma_class>
+</rsp>
