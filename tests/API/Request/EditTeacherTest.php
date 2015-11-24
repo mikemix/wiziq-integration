@@ -1,5 +1,5 @@
 <?php
-namespace mikemix\Wiziq\Tests\Service;
+namespace mikemix\Wiziq\Tests\API\Request;
 
 use mikemix\Wiziq\API\Request\EditTeacher;
 use mikemix\Wiziq\Entity\Teacher;
@@ -14,17 +14,11 @@ class EditTeacherTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->teacher = new Teacher(
-            'Test Mike',
-            'test@mike.com',
-            'password',
-            'http://g.gl/img.jpg'
-        );
-
+        $this->teacher = new Teacher('Test Mike', 'test@mike.com', 'password');
         $this->request = new EditTeacher(12345, $this->teacher);
     }
 
-    public function testGetMethodSet()
+    public function testGetMethod()
     {
         $this->assertEquals('edit_teacher', $this->request->getMethod());
     }
@@ -36,13 +30,13 @@ class EditTeacherTest extends \PHPUnit_Framework_TestCase
             'name'               => 'Test Mike',
             'email'              => 'test@mike.com',
             'password'           => 'password',
-            'image'              => 'http://g.gl/img.jpg',
-            'is_active'          => true,
-            'phone_number'       => null,
-            'mobile_number'      => null,
-            'time_zone'          => null,
-            'about_the_teacher'  => null,
-            'can_schedule_class' => false,
+            'image'              => '',
+            'phone_number'       => '',
+            'mobile_number'      => '',
+            'time_zone'          => '',
+            'about_the_teacher'  => '',
+            'can_schedule_class' => 0,
+            'is_active'          => 1,
         ];
 
         $this->assertEquals($params, $this->request->getParams());

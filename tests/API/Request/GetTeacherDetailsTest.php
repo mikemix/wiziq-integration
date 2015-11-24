@@ -1,5 +1,5 @@
 <?php
-namespace mikemix\Wiziq\Tests\Service;
+namespace mikemix\Wiziq\Tests\API\Request;
 
 use mikemix\Wiziq\API\Request\GetTeacherDetails;
 
