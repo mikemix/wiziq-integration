@@ -11,10 +11,9 @@ Integration library with [Wiziq](http://www.wiziq.com)'s API:
 
 Best install with Composer
 
-1. You don't have Composer?
-   Download it `php -r "readfile('https://getcomposer.org/installer');" | php`
-2. Download the library `composer require mikemix/wiziq-integration`
-   Rules of [semantic versioning](http://semver.org) apply.
+1. You don't have Composer? Download it `php -r "readfile('https://getcomposer.org/installer');" | php`
+2. Download the library `php composer.phar require mikemix/wiziq-integration` (rules of [semantic versioning](http://semver.org) apply)
+3. See the [docs](docs) for examples
 
 ### Unit tests
 
