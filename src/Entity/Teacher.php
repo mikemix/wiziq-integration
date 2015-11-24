@@ -42,6 +42,17 @@ class Teacher
     }
 
     /**
+     * @param string $name
+     * @param string $email
+     * @param string $password
+     * @return Teacher
+     */
+    public static function build($name, $email, $password)
+    {
+        return new self($name, $email, $password);
+    }
+
+    /**
      * @return string
      */
     public function __toString()
