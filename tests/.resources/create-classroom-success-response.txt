@@ -1,0 +1,19 @@
+<rsp status="ok" call_id="g7hj8h2dgty4">
+  <method>create</method>
+  <create status="true">
+    <class_details>
+      <class_id>15716</class_id>
+      <recording_url><![CDATA[http://live.wiziq.com/aliveext/Recorded.aspx?SessionCode=pqcTxHXEgSU%3d]]></recording_url>
+      <presenter_list>
+        <presenter>
+          <presenter_email><![CDATA[tsb.kid@gmail.com]]></presenter_email>
+          <presenter_url><![CDATA[http://live.wiziq.com/aliveext/LoginToSession.aspx?SessionCode=Mk5wx06KmZg%3d]]></presenter_url>
+        </presenter>
+        <presenter>
+          <presenter_email><![CDATA[tsb2.kid@gmail.com]]></presenter_email>
+          <presenter_url><![CDATA[http://live.wiziq.com/aliveext/LoginToSession.aspx?SessionCode=Xxxwx06KmZg%3d]]></presenter_url>
+        </presenter>
+      </presenter_list>
+    </class_details>
+  </create>
+</rsp>
