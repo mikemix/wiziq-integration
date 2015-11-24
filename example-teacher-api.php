@@ -6,13 +6,17 @@ use mikemix\Wiziq;
 
 $auth    = new Wiziq\API\Auth('your-secret-access-key', 'public-access-key');
 $gateway = new Wiziq\API\Gateway($auth);
-$sdk     = new Wiziq\API\WiziqSdk($gateway);
+$api     = new Wiziq\API\TeacherApi($gateway);
 
 ### ADD THE TEACHER
 
 try {
-    $teacher = new Wiziq\Entity\Teacher('Mike Test', 'mike@test.com', 'his_password');
-    $teacherId = $sdk->addTeacher($teacher);
+    $teacher = Wiziq\Entity\Teacher::build('Mike Test', 'mike@test.com', 'his_password')
+        ->withAbout('I am the best teacher there is!')
+        ->withTimeZone('Europe/Warsaw')
+        ->withImage('http://some.cdn.net/my-avatar.png');
+
+    $teacherId = $api->addTeacher($teacher);
 
     sprintf('Teacher %s added!', $teacher);
 } catch (Wiziq\Common\Api\Exception\CallException $e) {
@@ -24,8 +28,8 @@ try {
 ### EDIT THE TEACHER
 
 try {
-    $teacher = new Wiziq\Entity\Teacher('Mike Test', 'mikexxx@test.com', 'his_new_password');
-    $sdk->editTeacher($teacherId, $teacher);
+    $teacher = Wiziq\Entity\Teacher::build('Mike Test', 'mikexxx@test.com', 'his_new_password');
+    $api->editTeacher($teacherId, $teacher);
 
     sprintf('Teacher %s edited!', $teacher);
 } catch (Wiziq\Common\Api\Exception\CallException $e) {
@@ -37,7 +41,7 @@ try {
 ### GET TEACHER DETAILS
 
 try {
-    $details = $sdk->getTeacherDetails($teacherId);
+    $details = $api->getTeacherDetails($teacherId);
 
     sprintf('Teacher details: %s', var_export($details, true));
 } catch (Wiziq\Common\Api\Exception\CallException $e) {
