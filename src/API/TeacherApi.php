@@ -2,10 +2,10 @@
 namespace mikemix\Wiziq\API;
 
 use mikemix\Wiziq\Common\Api\Exception;
-use mikemix\Wiziq\Common\Api\WiziqSdkInterface;
+use mikemix\Wiziq\Common\Api\TeacherApiInterface;
 use mikemix\Wiziq\Entity\Teacher;
 
-class WiziqSdk implements WiziqSdkInterface
+class TeacherApi implements TeacherApiInterface
 {
     /** @var Gateway */
     protected $gateway;

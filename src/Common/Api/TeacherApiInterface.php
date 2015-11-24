@@ -3,7 +3,7 @@ namespace mikemix\Wiziq\Common\Api;
 
 use mikemix\Wiziq\Entity\Teacher;
 
-interface WiziqSdkInterface
+interface TeacherApiInterface
 {
     /**
      * Add the teacher.

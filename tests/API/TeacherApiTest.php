@@ -3,15 +3,15 @@ namespace mikemix\Wiziq\Tests\API;
 
 use mikemix\Wiziq\API\Gateway;
 use mikemix\Wiziq\API\Request;
-use mikemix\Wiziq\API\WiziqSdk;
+use mikemix\Wiziq\API\TeacherApi;
 use mikemix\Wiziq\Entity\Teacher;
 
-class WiziqSdkTest extends \PHPUnit_Framework_TestCase
+class TeacherApiTest extends \PHPUnit_Framework_TestCase
 {
     /** @var Gateway|\PHPUnit_Framework_MockObject_MockObject */
     private $gateway;
 
-    /** @var WiziqSdk */
+    /** @var TeacherApi */
     private $sdk;
 
     public function setUp()
@@ -21,7 +21,7 @@ class WiziqSdkTest extends \PHPUnit_Framework_TestCase
             ->setMethods(['sendRequest'])
             ->getMock();
 
-        $this->sdk = new WiziqSdk($this->gateway);
+        $this->sdk = new TeacherApi($this->gateway);
     }
 
     public function testAddTeacher()
