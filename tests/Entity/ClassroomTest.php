@@ -11,7 +11,7 @@ class ClassroomTest extends \PHPUnit_Framework_TestCase
     /** @var array */
     private $expected = [
         'title'                      => 'Title',
-        'start_time'                 => '30/12/2015 12:30:40',
+        'start_time'                 => '12/30/2015 12:30:40',
         'presenter_email'            => 'mike@test.com',
         'language_culture_name'      => '',
         'extend_duration'            => '',

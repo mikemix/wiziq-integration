@@ -28,7 +28,7 @@ class Classroom
     {
         $this->title          = (string)$title;
         $this->presenterEmail = (string)$presenterEmail;
-        $this->startTime      = $startTime->format('d/m/Y H:i:s');
+        $this->startTime      = $startTime->format('m/d/Y H:i:s');
     }
 
     /**
