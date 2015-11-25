@@ -98,4 +98,15 @@ class ClassroomApiTest extends \PHPUnit_Framework_TestCase
             ['id' => 102, 'url' => 'http://live.wiziq.com/aliveext/LoginToSession.aspx?SessionCode=XXX2cjbYXtNL1MuFKubtag%3d%3d'],
         ], $this->sdk->addAttendeesToClass($classroomId, $attendees));
     }
+
+    public function testCancel()
+    {
+        $classroomId = 12187;
+
+        $this->gateway->expects($this->once())
+            ->method('sendRequest')
+            ->with($this->equalTo(new Request\Cancel($classroomId)));
+
+        $this->sdk->cancel($classroomId);
+    }
 }

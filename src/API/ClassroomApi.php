@@ -34,6 +34,14 @@ class ClassroomApi implements ClassroomApiInterface
     /**
      * {@inheritdoc}
      */
+    public function cancel($classroomId)
+    {
+        $this->gateway->sendRequest(new Request\Cancel($classroomId));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function createPermaClas(PermaClassroom $classroom)
     {
         $response = $this->gateway->sendRequest(new Request\CreatePermaClass($classroom));

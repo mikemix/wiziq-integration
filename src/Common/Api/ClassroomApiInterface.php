@@ -30,6 +30,19 @@ interface ClassroomApiInterface
     public function create(Classroom $classroom);
 
     /**
+     * Cancel a class
+     *
+     * @see http://developer.wiziq.com/class/method/cancel
+     *
+     * @param int       $classroomId Classroom ID
+     *
+     * @return void
+     *
+     * @throws Exception\CallException
+     */
+    public function cancel($classroomId);
+
+    /**
      * Create a permanent class
      *
      * @see http://developer.wiziq.com/class/method/create_perma_class
