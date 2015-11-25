@@ -1,0 +1,16 @@
+<rsp status="ok" call_id="g7hj8h2dgty4">
+  <method>add_attendees</method>
+  <add_attendees status="true">
+    <class_id>12187</class_id>
+    <attendee_list>
+      <attendee>
+        <attendee_id><![CDATA[101]]></attendee_id>
+        <attendee_url><![CDATA[http://live.wiziq.com/aliveext/LoginToSession.aspx?SessionCode=YYY2cjbYXtNL1MuFKubtag%3d%3d]]></attendee_url>
+      </attendee>
+      <attendee>
+        <attendee_id><![CDATA[102]]></attendee_id>
+        <attendee_url><![CDATA[http://live.wiziq.com/aliveext/LoginToSession.aspx?SessionCode=XXX2cjbYXtNL1MuFKubtag%3d%3d]]></attendee_url>
+      </attendee>
+    </attendee_list>
+  </add_attendees>
+</rsp>

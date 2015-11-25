@@ -3,6 +3,7 @@ namespace mikemix\Wiziq\API;
 
 use mikemix\Wiziq\API\Request;
 use mikemix\Wiziq\Common\Api\ClassroomApiInterface;
+use mikemix\Wiziq\Entity\Attendees;
 use mikemix\Wiziq\Entity\Classroom;
 use mikemix\Wiziq\Entity\PermaClassroom;
 
@@ -44,6 +45,21 @@ class ClassroomApi implements ClassroomApiInterface
             'presenter_email' => (string)$details->presenter[0]->presenter_email,
             'presenter_url'   => (string)$details->presenter[0]->presenter_url,
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addAttendeesToClass($classroomId, Attendees $attendees)
+    {
+        $response = $this->gateway->sendRequest(new Request\AddAttendees($classroomId, $attendees));
+        $result   = [];
+
+        foreach ($response->add_attendees[0]->attendee_list[0] as $attendee) {
+            $result[] = ['id' => (int)$attendee->attendee_id, 'url' => (string)$attendee->attendee_url];
+        }
+
+        return $result;
     }
 
     /**

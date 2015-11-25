@@ -5,6 +5,7 @@ use mikemix\Wiziq\API\ClassroomApi;
 use mikemix\Wiziq\API\Gateway;
 use mikemix\Wiziq\API\Request;
 use mikemix\Wiziq\Common\Api\ClassroomApiInterface;
+use mikemix\Wiziq\Entity\Attendees;
 use mikemix\Wiziq\Entity\Classroom;
 use mikemix\Wiziq\Entity\PermaClassroom;
 
@@ -73,5 +74,28 @@ class ClassroomApiTest extends \PHPUnit_Framework_TestCase
             'presenter_email' => 'teacherinme@gmail.com',
             'presenter_url'   => 'https://www.wiziq.com/class/launch.aspx?nVnDx7oTA%2bmTJwBNnZO9GCwZdS7yUDhmpb0twttPeyzKVEf5aK7owa6T',
         ], $this->sdk->createPermaClas($classroom));
+    }
+
+    public function testAddAttendees()
+    {
+        $classroomId = 12187;
+
+        $attendees = Attendees::build()
+            ->add(101, 'Attendee1')
+            ->add(102, 'Another');
+
+        $this->gateway->expects($this->once())
+            ->method('sendRequest')
+            ->with($this->equalTo(new Request\AddAttendees($classroomId, $attendees)))
+            ->will($this->returnValue(
+                simplexml_load_string(
+                    file_get_contents(__DIR__ . '/../.resources/add-attendees-success-response.txt')
+                )
+            ));
+
+        $this->assertSame([
+            ['id' => 101, 'url' => 'http://live.wiziq.com/aliveext/LoginToSession.aspx?SessionCode=YYY2cjbYXtNL1MuFKubtag%3d%3d'],
+            ['id' => 102, 'url' => 'http://live.wiziq.com/aliveext/LoginToSession.aspx?SessionCode=XXX2cjbYXtNL1MuFKubtag%3d%3d'],
+        ], $this->sdk->addAttendeesToClass($classroomId, $attendees));
     }
 }
