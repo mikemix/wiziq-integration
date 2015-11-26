@@ -32,7 +32,7 @@ class AddAttendees implements RequestInterface
     public function getParams()
     {
         return [
-            'classroom_id'  => $this->classroomId,
+            'class_id'      => $this->classroomId,
             'attendee_list' => $this->attendees->toXmlString()
         ];
     }

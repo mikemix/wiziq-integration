@@ -33,7 +33,7 @@ class AddAttendeesTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue('xml'));
 
         $params = [
-            'classroom_id'  => 12345,
+            'class_id'      => 12345,
             'attendee_list' => 'xml',
         ];
 
