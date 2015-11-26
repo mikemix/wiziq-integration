@@ -34,7 +34,7 @@ class ClassroomApiTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateClassroom()
     {
-        $classroom = Classroom::build('Title', 'mike@test.com', new \DateTime('2015-12-30 12:30:50'));
+        $classroom = Classroom::build('Title', new \DateTime('2015-12-30 12:30:50'));
 
         $this->gateway->expects($this->once())
             ->method('sendRequest')

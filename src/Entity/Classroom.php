@@ -21,25 +21,22 @@ class Classroom
 
     /**
      * @param string    $title
-     * @param string    $presenterEmail
      * @param \DateTime $startTime
      */
-    private function __construct($title, $presenterEmail, \DateTime $startTime)
+    private function __construct($title, \DateTime $startTime)
     {
-        $this->title          = (string)$title;
-        $this->presenterEmail = (string)$presenterEmail;
-        $this->startTime      = $startTime->format('m/d/Y H:i:s');
+        $this->title     = (string)$title;
+        $this->startTime = $startTime->format('m/d/Y H:i:s');
     }
 
     /**
      * @param string    $title
-     * @param string    $presenterEmail
      * @param \DateTime $startTime
      * @return self
      */
-    public static function build($title, $presenterEmail, \DateTime $startTime)
+    public static function build($title, \DateTime $startTime)
     {
-        return new self($title, $presenterEmail, $startTime);
+        return new self($title, $startTime);
     }
 
     /**
@@ -83,10 +80,9 @@ class Classroom
      */
     public function toArray()
     {
-        return [
+        $params = [
             'title'                      => $this->title,
             'start_time'                 => $this->startTime,
-            'presenter_email'            => $this->presenterEmail,
             'language_culture_name'      => $this->languageCultureName,
             'extend_duration'            => $this->extendDuration,
             'duration'                   => $this->duration,
@@ -98,5 +94,14 @@ class Classroom
             'return_url'                 => $this->returnUrl,
             'status_ping_url'            => $this->statusPingUrl,
         ];
+
+        if ($this->presenterEmail) {
+            $params['presenter_email'] = $this->presenterEmail;
+        } else {
+            $params['presenter_id']   = $this->presenterId;
+            $params['presenter_name'] = $this->presenterName;
+        }
+
+        return $params;
     }
 }

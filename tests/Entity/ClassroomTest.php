@@ -12,7 +12,6 @@ class ClassroomTest extends \PHPUnit_Framework_TestCase
     private $expected = [
         'title'                      => 'Title',
         'start_time'                 => '12/30/2015 12:30:40',
-        'presenter_email'            => 'mike@test.com',
         'language_culture_name'      => '',
         'extend_duration'            => '',
         'duration'                   => '',
@@ -23,16 +22,31 @@ class ClassroomTest extends \PHPUnit_Framework_TestCase
         'create_recording'           => '',
         'return_url'                 => '',
         'status_ping_url'            => '',
+        'presenter_id'               => 123,
+        'presenter_name'             => 'mike@test.com',
     ];
 
     public function setUp()
     {
-        $this->entity = Classroom::build('Title', 'mike@test.com', new \DateTime('2015-12-30 12:30:40'));
+        $this->entity = Classroom::build('Title', new \DateTime('2015-12-30 12:30:40'))
+            ->withPresenter(123, 'mike@test.com');
     }
 
     public function testBuildBasic()
     {
         $this->assertEquals($this->expected, $this->entity->toArray());
+    }
+
+    public function testBuildWithPresenterEmail()
+    {
+        unset($this->expected['presenter_id']);
+        unset($this->expected['presenter_name']);
+
+        $this->expected['presenter_email'] = 'mike@test.com';
+        $newEntity = $this->entity->withPresenterEmail($this->expected['presenter_email']);
+
+        $this->assertEquals($this->expected, $newEntity->toArray());
+        $this->assertNotSame($newEntity, $this->entity);
     }
 
     public function testBuildWithLanguageCultureName()
