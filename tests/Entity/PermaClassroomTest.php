@@ -11,7 +11,6 @@ class PermaClassroomTest extends \PHPUnit_Framework_TestCase
     /** @var array */
     private $expected = [
         'title'                      => 'Title',
-        'presenter_email'            => 'mike@test.com',
         'attendee_limit'             => '',
         'presenter_default_controls' => '',
         'attendee_default_controls'  => '',
@@ -19,16 +18,40 @@ class PermaClassroomTest extends \PHPUnit_Framework_TestCase
         'return_url'                 => '',
         'status_ping_url'            => '',
         'language_culture_name'      => '',
+        'presenter_id'               => '',
+        'presenter_name'             => '',
     ];
 
     public function setUp()
     {
-        $this->entity = PermaClassroom::build('Title', 'mike@test.com');
+        $this->entity = PermaClassroom::build('Title');
     }
 
     public function testBuildBasic()
     {
         $this->assertEquals($this->expected, $this->entity->toArray());
+    }
+
+    public function testBuildWithPresenter()
+    {
+        $this->expected['presenter_id']    = 100;
+        $this->expected['presenter_name'] = 'mike@test.com';
+        $newEntity = $this->entity->withPresenter($this->expected['presenter_id'], $this->expected['presenter_name']);
+
+        $this->assertEquals($this->expected, $newEntity->toArray());
+        $this->assertNotSame($newEntity, $this->entity);
+    }
+
+    public function testBuildWithPresenterEmail()
+    {
+        unset($this->expected['presenter_id']);
+        unset($this->expected['presenter_name']);
+
+        $this->expected['presenter_email'] = 'mike@test.com';
+        $newEntity = $this->entity->withPresenterEmail($this->expected['presenter_email']);
+
+        $this->assertEquals($this->expected, $newEntity->toArray());
+        $this->assertNotSame($newEntity, $this->entity);
     }
 
     public function testBuildWithLanguageCultureName()

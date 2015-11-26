@@ -10,7 +10,9 @@ $gateway = new Wiziq\API\Gateway($auth);
 $api     = new Wiziq\API\ClassroomApi($gateway);
 
 try {
-    $classroom = Wiziq\Entity\Classroom::build('Class title', 'teacher@email.com', new \DateTime('now'));
+    $classroom = Wiziq\Entity\Classroom::build('Class title', new \DateTime('now'))
+        ->withPresenter(100, 'Presenter Name');
+
     $response  = $api->create($classroom);
 
     printf('Class %s created: %s', $classroom, var_export($response, true));
@@ -61,7 +63,9 @@ $gateway = new Wiziq\API\Gateway($auth);
 $api     = new Wiziq\API\ClassroomApi($gateway);
 
 try {
-    $classroom = Wiziq\Entity\PermaClassroom::build('Class title', 'teacher@email.com');
+    $classroom = Wiziq\Entity\PermaClassroom::build('Class title')
+        ->withPresenter(100, 'Presenter Name');
+
     $response  = $api->createPermaClass($classroom);
 
     printf('Perma class %s created: %s', $classroom, var_export($response, true));
