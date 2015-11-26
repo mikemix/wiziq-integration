@@ -46,12 +46,10 @@ class ClassroomApiTest extends \PHPUnit_Framework_TestCase
             ));
 
         $this->assertSame([
-            'class_id'      => 15716,
-            'recording_url' => 'http://live.wiziq.com/aliveext/Recorded.aspx?SessionCode=pqcTxHXEgSU%3d',
-            'presenters'    => [
-                ['email' => 'tsb.kid@gmail.com',  'url' => 'http://live.wiziq.com/aliveext/LoginToSession.aspx?SessionCode=Mk5wx06KmZg%3d'],
-                ['email' => 'tsb2.kid@gmail.com', 'url' => 'http://live.wiziq.com/aliveext/LoginToSession.aspx?SessionCode=Xxxwx06KmZg%3d'],
-            ],
+            'class_id'        => 15716,
+            'recording_url'   => 'http://live.wiziq.com/aliveext/Recorded.aspx?SessionCode=pqcTxHXEgSU%3d',
+            'presenter_email' => 'tsb.kid@gmail.com',
+            'presenter_url'   => 'http://live.wiziq.com/aliveext/LoginToSession.aspx?SessionCode=Mk5wx06KmZg%3d',
         ], $this->sdk->create($classroom));
     }
 

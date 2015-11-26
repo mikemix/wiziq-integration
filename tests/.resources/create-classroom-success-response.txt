@@ -9,10 +9,6 @@
           <presenter_email><![CDATA[tsb.kid@gmail.com]]></presenter_email>
           <presenter_url><![CDATA[http://live.wiziq.com/aliveext/LoginToSession.aspx?SessionCode=Mk5wx06KmZg%3d]]></presenter_url>
         </presenter>
-        <presenter>
-          <presenter_email><![CDATA[tsb2.kid@gmail.com]]></presenter_email>
-          <presenter_url><![CDATA[http://live.wiziq.com/aliveext/LoginToSession.aspx?SessionCode=Xxxwx06KmZg%3d]]></presenter_url>
-        </presenter>
       </presenter_list>
     </class_details>
   </create>

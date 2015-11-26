@@ -22,12 +22,14 @@ class ClassroomApi implements ClassroomApiInterface
      */
     public function create(Classroom $classroom)
     {
-        $response = $this->gateway->sendRequest(new Request\Create($classroom));
+        $response = $this->gateway->sendRequest(new Request\Create($classroom))
+            ->create[0]->class_details[0];
 
         return [
-            'class_id'      => (int)$response->create[0]->class_details[0]->class_id,
-            'recording_url' => (string)$response->create[0]->class_details[0]->recording_url,
-            'presenters'    => $this->getPresentersFromResponse($response->create[0]->class_details[0])
+            'class_id'        => (int)$response->class_id,
+            'recording_url'   => (string)$response->recording_url,
+            'presenter_email' => (string)$response->presenter_list[0]->presenter[0]->presenter_email,
+            'presenter_url'   => (string)$response->presenter_list[0]->presenter[0]->presenter_url,
         ];
     }
 

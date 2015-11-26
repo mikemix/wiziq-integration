@@ -15,10 +15,8 @@ interface ClassroomApiInterface
      * [
      *    'class_id' => 15716,
      *    'recording_url' => 'http://live.wiziq.com/aliveext/Recorded.aspx?SessionCode=pqcTxHXEgSU%3d',
-     *    'presenters' => [
-     *        ['email' => 'tsb.kid@gmail.com', 'url' => 'http://live.wiziq.com/aliveext/LoginToSession.aspx'],
-     *        // more presenters if any
-     *    ]
+     *    'presenter_email' => 'tsb.kid@gmail.com',
+     *    'presenter_url' => 'http://live.wiziq.com/aliveext/LoginToSession.aspx'
      * ]
      *
      * @param Classroom $classroom
