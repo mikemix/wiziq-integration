@@ -27,7 +27,7 @@ class Cancel implements RequestInterface
     public function getParams()
     {
         return [
-            'classroom_id'  => $this->classroomId,
+            'class'  => $this->classroomId,
         ];
     }
 }
