@@ -41,7 +41,7 @@ try {
         ->add(101, 'Susan', 'pl-PL');
         // add more if needed
 
-    $response = $api->addAttendees($classroomId, $attendees);
+    $response = $api->addAttendeesToClass($classroomId, $attendees);
 
     printf('Attendees to class %d added: %s', $classroomId, var_export($response, true));
 } catch (Wiziq\Common\Api\Exception\CallException $e) {
