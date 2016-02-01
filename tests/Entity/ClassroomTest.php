@@ -114,13 +114,13 @@ class ClassroomTest extends \PHPUnit_Framework_TestCase
 
     public function testBuildWithCreateRecording()
     {
-        $this->expected['create_recording'] = 0;
+        $this->expected['create_recording'] = 'false';
         $newEntity = $this->entity->withCreateRecording(false);
 
         $this->assertEquals($this->expected, $newEntity->toArray());
         $this->assertNotSame($newEntity, $this->entity);
 
-        $this->expected['create_recording'] = 1;
+        $this->expected['create_recording'] = 'true';
         $newEntity = $this->entity->withCreateRecording(true);
 
         $this->assertEquals($this->expected, $newEntity->toArray());
