@@ -19,8 +19,6 @@ Best install with Composer
 
 phpUnit is required to run the suite.
 
-1. `git clone https://github.com/mikemix/wiziq-integration.git`
-2. `cd wiziq-integration`
-3. `php -r "readfile('https://getcomposer.org/installer');" | php`
-3. `php composer.phar install`
-4. `phpunit`
+1. `php -r "readfile('https://getcomposer.org/installer');" | php`
+2. `php composer.phar create-project mikemix/wiziq-integration`
+3. `phpunit`
