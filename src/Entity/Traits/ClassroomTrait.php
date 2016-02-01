@@ -98,7 +98,7 @@ trait ClassroomTrait
     public function withCreateRecording($value)
     {
         $self = clone $this;
-        $self->createRecording = (int)(bool)$value;
+        $self->createRecording = $value ? 'true' : 'false';
         return $self;
     }
 
