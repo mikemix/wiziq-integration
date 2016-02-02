@@ -28,6 +28,16 @@ interface ClassroomApiInterface
     public function create(Classroom $classroom);
 
     /**
+     * Edit a scheduled class
+     * @see http://developer.wiziq.com/class/method/modify
+     * Returned response is a boolean true or false
+     * @param  int    $classroomId classroom ID
+     * @param  Classroom $classroom
+     * @return boolean modification state
+     */
+    public function modify($classroomId, Classroom $classroom);
+
+    /**
      * Cancel a class
      *
      * @see http://developer.wiziq.com/class/method/cancel
