@@ -23,6 +23,32 @@ try {
 }
 ```
 
+### Modify a class
+
+```php
+require 'vendor/autoload.php';
+
+use mikemix\Wiziq;
+
+$auth    = new Wiziq\API\Auth('your-secret-access-key', 'public-access-key');
+$gateway = new Wiziq\API\Gateway($auth);
+$api     = new Wiziq\API\ClassroomApi($gateway);
+
+try {
+    $classroomId = 12345;
+    $classroom = Wiziq\Entity\Classroom::build('Class title', new \DateTime('now'))
+        ->withPresenter(100, 'Presenter Name');
+
+    $response  = $api->modify($classroomId, $classroom);
+
+    printf('Class %s created: %s', $classroom, var_export($response, true));
+} catch (Wiziq\Common\Api\Exception\CallException $e) {
+    die($e->getMessage());
+} catch (Wiziq\Common\Http\Exception\InvalidResponseException $e) {
+    die($e->getMessage());
+}
+```
+
 ### Add attendees to the class (not permament one)
 
 ```php
