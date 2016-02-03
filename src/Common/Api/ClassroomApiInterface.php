@@ -27,6 +27,20 @@ interface ClassroomApiInterface
      */
     public function create(Classroom $classroom);
 
+     /**
+     * Edit the teacher.
+     *
+     * @see http://developer.wiziq.com/teacher/method/edit_teacher
+     *
+     * @param int     $teacherId   Wiziq's teacher ID
+     * @param Teacher $teacher     New teacher's data
+     *
+     * @return void
+     *
+     * @throws Exception\CallException
+     */
+    public function modify($classroomId, Classroom $classroom);
+
     /**
      * Cancel a class
      *

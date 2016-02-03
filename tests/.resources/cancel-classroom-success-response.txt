@@ -1,0 +1,5 @@
+<rsp status="ok" call_id="g7hj8h2dgty4">
+  <method>cancel</method>
+  <cancel status="true">
+  </cancel>
+</rsp>

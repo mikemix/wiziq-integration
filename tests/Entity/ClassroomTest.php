@@ -13,7 +13,6 @@ class ClassroomTest extends \PHPUnit_Framework_TestCase
         'title'                      => 'Title',
         'start_time'                 => '12/30/2015 12:30:40',
         'language_culture_name'      => '',
-        'extend_duration'            => '',
         'duration'                   => '',
         'time_zone'                  => '',
         'attendee_limit'             => '',
