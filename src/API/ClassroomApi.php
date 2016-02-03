@@ -48,7 +48,8 @@ class ClassroomApi implements ClassroomApiInterface
      */
     public function cancel($classroomId)
     {
-        $this->gateway->sendRequest(new Request\Cancel($classroomId));
+        $response = $this->gateway->sendRequest(new Request\Cancel($classroomId))->cancel['status'];
+        return $response;
     }
 
     /**

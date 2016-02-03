@@ -41,7 +41,7 @@ interface ClassroomApiInterface
      * Cancel a class
      *
      * @see http://developer.wiziq.com/class/method/cancel
-     *
+     * Returned response is a boolean true or false
      * @param int       $classroomId Classroom ID
      *
      * @return void
