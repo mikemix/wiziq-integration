@@ -38,7 +38,8 @@ class ClassroomApi implements ClassroomApiInterface
      */
     public function modify($classroomId, Classroom $classroom)
     {
-        $response = $this->gateway->sendRequest(new Request\Modify($classroomId, $classroom))->modify["status"];
+
+        $response = (boolean)$this->gateway->sendRequest(new Request\Modify($classroomId, $classroom))->modify["status"];
 
         return $response;
     }
@@ -48,8 +49,35 @@ class ClassroomApi implements ClassroomApiInterface
      */
     public function cancel($classroomId)
     {
-        $response = $this->gateway->sendRequest(new Request\Cancel($classroomId))->cancel['status'];
+        $response = (boolean)$this->gateway->sendRequest(new Request\Cancel($classroomId))->cancel['status'];
         return $response;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAttendanceReport($classroomId)
+    {
+        $attendance = [];
+
+        $response = $this->gateway->sendRequest(new Request\AttendanceReport($classroomId))->get_attendance_report;
+
+        foreach($response->attendee_list[0] as $attendee) {
+            $data = [
+                    'entry_time'       => (string)$attendee->entry_time,
+                    'exit_time'        => (string)$attendee->exit_time,
+                    'attended_minutes' => (string)$attendee->attended_minutes,
+                    ];
+            if(isset($attendee['presenter']) and $attendee['presenter']==true) {
+                $data['presenter_id'] = (int)$attendee->presenter_id;
+            } else {
+                $data['attendee_id'] = (int)$attendee->attendee_id;
+            }
+
+            $attendance[] = $data;
+        }
+
+        return $attendance;
     }
 
     /**
@@ -84,6 +112,7 @@ class ClassroomApi implements ClassroomApiInterface
     }
 
     /**
+     * @codeCoverageIgnore
      * @param \SimpleXMLElement $response
      * @return array
      */

@@ -6,6 +6,7 @@ use mikemix\Wiziq\Entity\Classroom;
 
 class Modify implements RequestInterface
 {
+
     /** @var int */
     private $classroomId;
 

@@ -22,7 +22,7 @@ class CancelTest extends \PHPUnit_Framework_TestCase
     public function testGetParams()
     {
         $params = [
-            'class'  => 12345,
+            'class_id'  => 12345,
         ];
 
         $this->assertEquals($params, $this->request->getParams());

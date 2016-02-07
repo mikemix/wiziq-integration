@@ -84,7 +84,6 @@ class Classroom
             'title'                      => $this->title,
             'start_time'                 => $this->startTime,
             'language_culture_name'      => $this->languageCultureName,
-            'extend_duration'            => $this->extendDuration,
             'duration'                   => $this->duration,
             'time_zone'                  => $this->timeZone,
             'attendee_limit'             => $this->attendeeLimit,
@@ -95,9 +94,9 @@ class Classroom
             'status_ping_url'            => $this->statusPingUrl,
         ];
 
-
         if($this->extendDuration) {
             $params['extend_duration'] = $this->extendDuration;
+
         }
 
         if ($this->presenterEmail) {
