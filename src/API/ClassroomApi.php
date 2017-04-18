@@ -36,9 +36,20 @@ class ClassroomApi implements ClassroomApiInterface
     /**
      * {@inheritdoc}
      */
+    public function modify($classroomId, Classroom $classroom)
+    {
+        $response = $this->gateway->sendRequest(new Request\Modify($classroomId, $classroom))->modify["status"];
+
+        return $response;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
     public function cancel($classroomId)
     {
-        $this->gateway->sendRequest(new Request\Cancel($classroomId));
+        $response = $this->gateway->sendRequest(new Request\Cancel($classroomId))->cancel['status'];
+        return $response;
     }
 
     /**

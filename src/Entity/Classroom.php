@@ -95,6 +95,11 @@ class Classroom
             'status_ping_url'            => $this->statusPingUrl,
         ];
 
+
+        if($this->extendDuration) {
+            $params['extend_duration'] = $this->extendDuration;
+        }
+
         if ($this->presenterEmail) {
             $params['presenter_email'] = $this->presenterEmail;
         } else {
