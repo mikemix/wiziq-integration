@@ -43,7 +43,16 @@ class ClassroomApi implements ClassroomApiInterface
 
         return $response;
     }
-    
+     /**
+     * {@inheritdoc}
+     */
+    public function download($classroomId, $recordingFormat = 'zip')
+    {
+
+        $response = $this->gateway->sendRequest(new Request\Download($classroomId, $recordingFormat))->download_recording;
+
+        return $response;
+    }
     /**
      * {@inheritdoc}
      */

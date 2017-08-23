@@ -40,6 +40,9 @@ interface ClassroomApiInterface
      * @throws Exception\CallException
      */
     public function modify($classroomId, Classroom $classroom);
+
+
+    public function download($classroomId, $recordingFormat);
     /**
      * Cancel a class
      *
