@@ -11,7 +11,7 @@ use mikemix\Wiziq\Http\CurlClient;
  */
 class Gateway
 {
-    const URL = 'http://class.api.wiziq.com';
+    const URL = 'https://class.api.wiziq.com';
 
     /** @var Auth */
     private $auth;

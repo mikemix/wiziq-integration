@@ -1,0 +1,30 @@
+<rsp status="ok">
+  <method>get_attendance_report</method>
+  <get_attendance_report status="true">
+    <class_id>15485</class_id>
+    <class_duration>20</class_duration>
+    <attendee_list>
+      <attendee presenter="true">
+        <presenter_id><![CDATA[656]]></presenter_id>
+        <screen_name><![CDATA[tsb_kid]]></screen_name>
+        <entry_time><![CDATA[6/22/2011 1:40:59 AM]]></entry_time>
+        <exit_time><![CDATA[6/22/2011 1:45:59 AM]]></exit_time>
+        <attended_minutes><![CDATA[6]]></attended_minutes>
+      </attendee>
+      <attendee>
+        <attendee_id><![CDATA[801]]></attendee_id>
+        <screen_name><![CDATA[shish801]]></screen_name>
+        <entry_time><![CDATA[6/22/2011 1:41:47 AM]]></entry_time>
+        <exit_time><![CDATA[6/22/2011 1:45:54 AM]]></exit_time>
+        <attended_minutes><![CDATA[5]]></attended_minutes>
+      </attendee>
+      <attendee>
+        <attendee_id><![CDATA[102]]></attendee_id>
+        <screen_name><![CDATA[shishpal]]></screen_name>
+        <entry_time><![CDATA[6/22/2011 1:42:11 AM]]></entry_time>
+        <exit_time><![CDATA[6/22/2011 1:46:18 AM]]></exit_time>
+        <attended_minutes><![CDATA[5]]></attended_minutes>
+      </attendee>
+    </attendee_list>
+  </get_attendance_report>
+</rsp>

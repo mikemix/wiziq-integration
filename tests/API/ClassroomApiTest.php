@@ -53,6 +53,41 @@ class ClassroomApiTest extends \PHPUnit_Framework_TestCase
         ], $this->sdk->create($classroom));
     }
 
+    public function testModifyClassroom()
+    {
+        $classroom = Classroom::build('Title', new \DateTime('2015-12-30 12:30:50'));
+        $classroomId = 12187;
+
+        $this->assertArrayNotHasKey('extend_duration', $classroom->toArray());
+
+        $this->gateway->expects($this->once())
+            ->method('sendRequest')
+            ->with($this->equalTo(new Request\Modify($classroomId, $classroom)))
+            ->will($this->returnValue(
+                simplexml_load_string(
+                    file_get_contents(__DIR__ . '/../.resources/modify-classroom-success-response.txt')
+                )
+            ));
+
+        $this->assertTrue($this->sdk->modify($classroomId, $classroom));
+    }
+
+    public function testGetAttendanceReport()
+    {
+        $classroomId = 12365;
+
+        $this->gateway->expects($this->once())
+            ->method('sendRequest')
+            ->with($this->equalTo(new Request\AttendanceReport($classroomId)))
+            ->will($this->returnValue(
+                simplexml_load_string(
+                    file_get_contents(__DIR__ . '/../.resources/get-attendance-report-success-response.txt')
+                )
+            ));
+        
+        $this->assertArraySubset([['entry_time'=>"6/22/2011 1:40:59 AM"]], $this->sdk->getAttendanceReport($classroomId));
+    }
+
     public function testCreatePermaClass()
     {
         $classroom = PermaClassroom::build('Title', 'mike@test.com');
@@ -103,8 +138,12 @@ class ClassroomApiTest extends \PHPUnit_Framework_TestCase
 
         $this->gateway->expects($this->once())
             ->method('sendRequest')
-            ->with($this->equalTo(new Request\Cancel($classroomId)));
-
-        $this->sdk->cancel($classroomId);
+            ->with($this->equalTo(new Request\Cancel($classroomId)))
+            ->will($this->returnValue(
+                simplexml_load_string(
+                    file_get_contents(__DIR__ . '/../.resources/cancel-classroom-success-response.txt')
+                )
+            ));
+        $this->assertTrue($this->sdk->cancel($classroomId));
     }
 }

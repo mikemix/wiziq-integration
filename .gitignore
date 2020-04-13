@@ -3,3 +3,5 @@
 phpunit.xml
 composer.lock
 composer.phar
+.phpintel
+/.phpintel

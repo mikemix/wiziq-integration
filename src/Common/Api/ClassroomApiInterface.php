@@ -27,11 +27,27 @@ interface ClassroomApiInterface
      */
     public function create(Classroom $classroom);
 
+     /**
+     * Edit the classroom.
+     *
+     * @see http://developer.wiziq.com/classroom/method/modify
+     * Returned response is a boolean
+     * @param int     $classroomId   Wiziq's classroom ID
+     * @param Classroom $classroom     New classroom's data
+     *
+     * @return void
+     *
+     * @throws Exception\CallException
+     */
+    public function modify($classroomId, Classroom $classroom);
+
+
+    public function download($classroomId, $recordingFormat);
     /**
      * Cancel a class
      *
      * @see http://developer.wiziq.com/class/method/cancel
-     *
+     * Returned response is a boolean true or false
      * @param int       $classroomId Classroom ID
      *
      * @return void
